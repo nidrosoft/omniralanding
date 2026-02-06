@@ -1,0 +1,431 @@
+@import @/styles/variables
+
+.section
+    position: relative
+    overflow: visible
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+    &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+// =====================
+// Head
+// =====================
+.head
+    position: relative
+    z-index: 2
+    max-width: 640px
+    margin: 0 auto 64px
+    text-align: center
+    +m
+        margin-bottom: 40px
+
+.title
+    +gradient-text
+    +m
+        font-size: 32px
+        line-height: 1.2
+        br
+            display: none
+
+.subtitle
+    +info
+    color: $text-secondary
+    opacity: .7
+    +m
+        font-size: 16px
+
+// =====================
+// Column Headers
+// =====================
+.columnHeaders
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: 140px 1fr 1fr
+    gap: 16px
+    margin-bottom: 12px
+    padding-bottom: 16px
+    border-bottom: 1px solid rgba($n2, .06)
+    +t
+        display: none
+
+.colTime
+    // empty spacer for alignment
+
+.colTraditional,
+.colOmnira
+    display: flex
+    justify-content: center
+
+.colHeaderBadge
+    display: inline-flex
+    align-items: center
+    gap: 8px
+    padding: 8px 20px
+    border-radius: 100px
+    font-size: 12px
+    font-weight: 700
+    text-transform: uppercase
+    letter-spacing: 0.06em
+    color: $text-secondary
+    background: rgba($n2, .03)
+    border: 1px solid rgba($n2, .06)
+
+.colDot
+    width: 8px
+    height: 8px
+    border-radius: 50%
+    flex-shrink: 0
+
+.dotRed
+    background: #ef4444
+    box-shadow: 0 0 8px rgba(239, 68, 68, .5), 0 0 16px rgba(239, 68, 68, .25)
+
+.dotGreen
+    background: #D2FE17
+    box-shadow: 0 0 8px rgba(210, 254, 23, .6), 0 0 16px rgba(210, 254, 23, .3)
+
+// =====================
+// Timeline
+// =====================
+.timeline
+    position: relative
+    z-index: 2
+
+.row
+    display: grid
+    grid-template-columns: 140px 1fr 1fr
+    gap: 16px
+    align-items: stretch
+    +t
+        grid-template-columns: 1fr
+        gap: 12px
+        padding-left: 60px
+        position: relative
+    +m
+        padding-left: 0
+
+// =====================
+// Time Column + Connector
+// =====================
+.timeCol
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 24px 0
+    +t
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        width: 48px
+        padding: 24px 0
+    +m
+        position: relative
+        width: 100%
+        flex-direction: row
+        gap: 12px
+        padding: 16px 0 8px
+
+.timeNode
+    position: relative
+    z-index: 3
+
+.timeIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 44px
+    height: 44px
+    border-radius: 14px
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.1)
+
+.timeInfo
+    margin-top: 8px
+    text-align: center
+    +m
+        margin-top: 0
+        text-align: left
+
+.timeValue
+    font-family: "Host Grotesk", sans-serif
+    font-size: 14px
+    font-weight: 700
+    letter-spacing: -.01em
+    color: $text-primary
+    opacity: .85
+    white-space: nowrap
+
+.timePeriod
+    font-size: 11px
+    font-weight: 500
+    color: $text-tertiary
+    opacity: .5
+    white-space: nowrap
+    margin-top: 2px
+
+.connector
+    flex: 1
+    width: 1px
+    min-height: 24px
+    background: rgba($n2, .08)
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.08))
+    +m
+        display: none
+
+// =====================
+// Entry Cards
+// =====================
+.entryCard
+    position: relative
+    border-radius: 24px
+    padding: 28px 24px
+    margin: 8px 0
+    background: rgba(248, 248, 248, 0.02)
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    box-shadow: inset 1px 2px 12px rgba(248, 248, 248, 0.03), 0px 8px 28px rgba(0, 0, 0, 0.12)
+    backdrop-filter: blur(50px)
+    transition: transform .3s, box-shadow .3s
+    +m
+        padding: 24px 20px
+        border-radius: 20px
+    &:hover
+        transform: translateY(-2px)
+        box-shadow: inset 1px 2px 12px rgba(248, 248, 248, 0.05), 0px 12px 36px rgba(0, 0, 0, 0.18)
+
+.entryTraditional
+    border-color: rgba(239, 68, 68, 0.08)
+    +t
+        &:before
+            content: "Traditional"
+            display: block
+            font-size: 10px
+            font-weight: 700
+            text-transform: uppercase
+            letter-spacing: 0.08em
+            color: rgba(239, 68, 68, .5)
+            margin-bottom: 12px
+
+.entryOmnira
+    border-color: rgba(210, 254, 23, 0.08)
+    +t
+        &:before
+            content: "With Omnira"
+            display: block
+            font-size: 10px
+            font-weight: 700
+            text-transform: uppercase
+            letter-spacing: 0.08em
+            color: rgba(210, 254, 23, .6)
+            margin-bottom: 12px
+
+.entryHeadline
+    font-family: "Host Grotesk", sans-serif
+    font-size: 16px
+    font-weight: 700
+    line-height: 1.3
+    letter-spacing: -.01em
+    color: $text-primary
+    margin-bottom: 8px
+    opacity: .88
+    +m
+        font-size: 15px
+
+.entryDetail
+    font-size: 14px
+    line-height: 1.6
+    font-weight: 400
+    color: $text-tertiary
+    opacity: .7
+    margin-bottom: 16px
+    +m
+        font-size: 13px
+        margin-bottom: 12px
+
+// =====================
+// Mood Tags
+// =====================
+.moodTag
+    display: inline-flex
+    align-items: center
+    gap: 6px
+    padding: 4px 12px
+    border-radius: 100px
+    font-size: 11px
+    font-weight: 600
+    letter-spacing: 0.04em
+
+.mood_idle
+    background: rgba(148, 163, 184, 0.08)
+    border: 1px solid rgba(148, 163, 184, 0.12)
+    color: rgba(148, 163, 184, .6)
+
+.mood_stressed
+    background: rgba(239, 68, 68, 0.06)
+    border: 1px solid rgba(239, 68, 68, 0.1)
+    color: rgba(239, 68, 68, .6)
+
+.mood_active
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.12)
+    color: rgba(210, 254, 23, .7)
+
+// =====================
+// Bottom Summary Row
+// =====================
+.summaryRow
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: 140px 1fr 1fr
+    gap: 16px
+    align-items: stretch
+    +t
+        grid-template-columns: 1fr
+        gap: 12px
+        padding-left: 60px
+    +m
+        padding-left: 0
+
+.summaryTimeCol
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 16px 0
+    position: relative
+    +t
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        width: 48px
+        padding: 16px 0
+    +m
+        display: none
+
+.summaryConnector
+    width: 1px
+    height: 24px
+    background: rgba($n2, .08)
+    margin-bottom: 8px
+
+.summaryIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 44px
+    height: 44px
+    border-radius: 14px
+    color: #D2FE17
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.1)
+
+.summaryTimeLabel
+    margin-top: 8px
+    font-size: 11px
+    font-weight: 700
+    text-transform: uppercase
+    letter-spacing: 0.06em
+    color: $text-tertiary
+    opacity: .5
+    white-space: nowrap
+
+.summaryCard
+    position: relative
+    border-radius: 24px
+    padding: 28px 24px
+    margin: 8px 0
+    display: flex
+    align-items: flex-start
+    gap: 16px
+    background: rgba(248, 248, 248, 0.025)
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    box-shadow: inset 1px 2px 12px rgba(248, 248, 248, 0.03), 0px 8px 28px rgba(0, 0, 0, 0.12)
+    backdrop-filter: blur(50px)
+    +m
+        padding: 24px 20px
+        border-radius: 20px
+        margin: 0
+
+.summaryTraditional
+    border-color: rgba(239, 68, 68, 0.08)
+
+.summaryOmnira
+    border-color: rgba(210, 254, 23, 0.08)
+
+.summaryDot
+    width: 12px
+    height: 12px
+    border-radius: 50%
+    flex-shrink: 0
+    margin-top: 6px
+
+.summaryContent
+    flex: 1
+
+.summaryLabel
+    font-size: 11px
+    font-weight: 700
+    text-transform: uppercase
+    letter-spacing: 0.08em
+    color: $text-tertiary
+    opacity: .5
+    margin-bottom: 8px
+
+.summaryValue
+    font-family: "Host Grotesk", sans-serif
+    font-size: 22px
+    font-weight: 700
+    letter-spacing: -.01em
+    +gradient-text
+    margin-bottom: 6px
+    +m
+        font-size: 18px
+
+.summaryNote
+    font-size: 14px
+    line-height: 1.5
+    color: $text-tertiary
+    opacity: .6

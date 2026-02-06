@@ -1,0 +1,266 @@
+@import @/styles/variables
+
+.footer
+    position: relative
+    padding: 80px 0 40px
+    overflow: visible
+    +m
+        padding: 60px 0 32px
+
+.footerText
+    position: relative
+    z-index: 1
+    width: 100%
+    margin: -120px auto 0
+    pointer-events: none
+    opacity: .8
+    +m
+        margin-top: -60px
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+// =====================
+// Top Row
+// =====================
+.top
+    position: relative
+    z-index: 2
+    display: flex
+    align-items: flex-start
+    gap: 40px
+    padding-bottom: 48px
+    +t
+        flex-wrap: wrap
+    +m
+        flex-direction: column
+        gap: 32px
+
+.brand
+    flex-shrink: 0
+
+.logo
+    display: flex
+    margin-bottom: 12px
+    img
+        opacity: 1
+
+.logoImage
+    border-radius: 12px
+    width: auto
+    height: auto
+    max-height: 48px
+
+.tagline
+    +info
+    color: $text-tertiary
+    opacity: .5
+    max-width: 240px
+    font-size: 14px
+    line-height: 1.6
+
+.nav
+    display: flex
+    flex-wrap: wrap
+    gap: 8px 28px
+    margin-left: auto
+    padding-top: 8px
+    +t
+        margin-left: 0
+    +m
+        gap: 8px 20px
+
+.navLink
+    font-family: "Host Grotesk", sans-serif
+    font-size: 14px
+    font-weight: 500
+    color: $text-secondary
+    opacity: .6
+    text-decoration: none
+    transition: opacity .2s, color .2s
+    &:hover
+        opacity: 1
+        color: #D2FE17
+
+// =====================
+// Teaser
+// =====================
+.teaser
+    position: relative
+    z-index: 2
+    display: flex
+    align-items: center
+    gap: 20px
+    padding: 24px 0
+    border-top: 1px solid rgba(255, 255, 255, 0.04)
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04)
+    +t
+        flex-wrap: wrap
+    +m
+        flex-direction: column
+        text-align: center
+        gap: 12px
+
+.teaserLabel
+    font-family: "Host Grotesk", sans-serif
+    font-size: 14px
+    font-weight: 500
+    color: $text-secondary
+    opacity: .7
+    flex-shrink: 0
+
+.verticals
+    display: flex
+    flex-wrap: wrap
+    gap: 8px
+    margin-left: auto
+    +m
+        margin-left: 0
+        justify-content: center
+
+.vertical
+    position: relative
+    display: flex
+    align-items: center
+    gap: 6px
+    padding: 6px 14px
+    border-radius: 20px
+    background: rgba(248, 248, 248, 0.03)
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    font-size: 12px
+    font-weight: 500
+    color: $text-tertiary
+    opacity: .6
+    cursor: default
+    transition: opacity .2s, border-color .2s
+    &:hover
+        opacity: .9
+        border-color: rgba(255, 255, 255, 0.1)
+        .tooltip
+            opacity: 1
+            visibility: visible
+            transform: translateX(-50%) translateY(0)
+
+.verticalActive
+    opacity: .9
+    border-color: rgba(210, 254, 23, 0.15)
+    color: $text-secondary
+    cursor: default
+
+.verticalIcon
+    display: flex
+    color: rgba($n2, .3)
+
+.tooltip
+    position: absolute
+    bottom: calc(100% + 8px)
+    left: 50%
+    transform: translateX(-50%) translateY(4px)
+    padding: 5px 12px
+    border-radius: 8px
+    background: rgba(30, 30, 30, 0.95)
+    border: 1px solid rgba(255, 255, 255, 0.1)
+    font-size: 11px
+    font-weight: 600
+    color: #D2FE17
+    white-space: nowrap
+    opacity: 0
+    visibility: hidden
+    transition: all .2s ease
+    pointer-events: none
+    &:after
+        content: ""
+        position: absolute
+        top: 100%
+        left: 50%
+        transform: translateX(-50%)
+        border: 5px solid transparent
+        border-top-color: rgba(30, 30, 30, 0.95)
+
+// =====================
+// Bottom Row
+// =====================
+.bottom
+    position: relative
+    z-index: 2
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 24px
+    padding-top: 32px
+    +t
+        flex-wrap: wrap
+        justify-content: center
+    +m
+        flex-direction: column
+        text-align: center
+        gap: 16px
+
+.copyright
+    font-size: 13px
+    color: $text-tertiary
+    opacity: .35
+
+.madeBy
+    font-size: 13px
+    color: $text-tertiary
+    opacity: .45
+    text-align: center
+
+.heart
+    font-style: normal
+
+.nidrosoft
+    color: $text-secondary
+    opacity: .8
+    text-decoration: none
+    font-weight: 500
+    transition: opacity .2s, color .2s
+    &:hover
+        opacity: 1
+        color: #D2FE17
+
+.legal
+    display: flex
+    gap: 20px
+    +m
+        gap: 16px
+
+.legalLink
+    font-size: 13px
+    color: $text-tertiary
+    opacity: .4
+    text-decoration: none
+    transition: opacity .2s
+    &:hover
+        opacity: .7

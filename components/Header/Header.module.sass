@@ -1,0 +1,171 @@
+@import @/styles/variables
+
+.header
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    z-index: 10
+    &.fixed
+        position: fixed
+        .overlay
+            visibility: visible
+            opacity: 1
+
+.image
+    opacity: 1
+
+.container
+    display: flex
+    align-items: center
+    height: 120px
+    +m
+        height: 76px
+
+.inner
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 100%
+
+.logo,
+.button
+    position: relative
+    z-index: 3
+
+.logo
+    img
+        +m
+            width: 153px
+
+.button
+    +m
+        height: 44px
+        padding: 0 20px
+    +s
+        display: none
+
+// =====================
+// Navigation
+// =====================
+.nav
+    position: relative
+    z-index: 3
+    display: flex
+    align-items: center
+    gap: 8px
+    +t
+        gap: 4px
+    +m
+        position: fixed
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 8px
+        background: rgba(10, 10, 10, 0.97)
+        backdrop-filter: blur(20px)
+        opacity: 0
+        visibility: hidden
+        pointer-events: none
+        transition: opacity .3s, visibility .3s
+        z-index: 2
+
+.navOpen
+    +m
+        opacity: 1
+        visibility: visible
+        pointer-events: auto
+
+.navLink
+    position: relative
+    padding: 8px 16px
+    border-radius: 12px
+    font-family: "Host Grotesk", sans-serif
+    font-size: 14px
+    font-weight: 500
+    color: $text-secondary
+    opacity: .55
+    text-decoration: none
+    transition: all .25s
+    +t
+        padding: 8px 12px
+        font-size: 13px
+    +m
+        padding: 12px 32px
+        font-size: 18px
+        opacity: .7
+    &:hover
+        opacity: 1
+        color: $text-primary
+        background: rgba(248, 248, 248, 0.04)
+
+// =====================
+// Burger (mobile)
+// =====================
+.burger
+    display: none
+    position: relative
+    z-index: 5
+    width: 44px
+    height: 44px
+    background: none
+    border: none
+    cursor: pointer
+    +m
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 6px
+    span
+        display: block
+        width: 22px
+        height: 2px
+        background: rgba($n2, .7)
+        border-radius: 2px
+        transition: all .3s
+
+.burgerOpen
+    span
+        &:nth-child(1)
+            transform: translateY(4px) rotate(45deg)
+        &:nth-child(2)
+            transform: translateY(-4px) rotate(-45deg)
+
+// =====================
+// Overlay (glassmorphic bg)
+// =====================
+.overlay
+    position: absolute
+    inset: -8px
+    visibility: hidden
+    opacity: 0
+    pointer-events: none
+    transition: all .2s
+    +m
+        top: -2px
+        left: -8px
+        right: -8px
+        bottom: -2px
+    &:before,
+    &:after
+        content: ""
+        position: absolute
+        inset: 0
+        border-radius: 32px
+    &:before
+        background: rgba(248, 248, 248, 0.03)
+        box-shadow: inset 2px 4px 16px 0px rgba(248, 248, 248, 0.06), 0px 24px 24px -16px rgba(5, 5, 5, 0.09), 0px 6px 13px 0px rgba(5, 5, 5, 0.10), 0px 6px 4px -4px rgba(5, 5, 5, 0.10), 0px 5px 1.5px -4px rgba(5, 5, 5, 0.25)
+        backdrop-filter: blur(50px)
+    &:after
+        border: 1.5px solid rgba(255, 255, 255, 0.05)
+        mask-image: linear-gradient(178deg, black, transparent 75%)
+        pointer-events: none
+    &.visible
+        visibility: visible
+        opacity: 1

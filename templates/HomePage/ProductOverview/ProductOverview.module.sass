@@ -1,0 +1,341 @@
+@import @/styles/variables
+
+.section
+    position: relative
+    overflow: visible
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+    &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+// =====================
+// Intro
+// =====================
+.intro
+    position: relative
+    z-index: 2
+    max-width: 720px
+    margin: 0 auto 120px
+    text-align: center
+    +m
+        margin-bottom: 64px
+
+.label
+    display: inline-block
+    position: relative
+    margin-bottom: 16px
+    padding: 6px 16px
+    border-radius: 100px
+    font-size: 12px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.05em
+    color: $text-tertiary
+    overflow: hidden
+    &:before
+        content: ""
+        position: absolute
+        inset: 0
+        border-radius: 100px
+        background: rgba($n2, .05)
+    &:after
+        content: ""
+        position: absolute
+        inset: 0
+        border-radius: 100px
+        border: 1.5px solid rgba($n2, .08)
+        mask-image: linear-gradient(170deg, black, transparent 50%)
+        pointer-events: none
+    span
+        position: relative
+        z-index: 2
+
+.title
+    +gradient-text
+    +m
+        font-size: 32px
+        line-height: 1.2
+        br
+            display: none
+
+.introText
+    +info
+    color: $text-secondary
+    opacity: .7
+    max-width: 640px
+    margin: 0 auto
+    +m
+        font-size: 16px
+
+// =====================
+// How It Works — Steps
+// =====================
+.stepsSection
+    position: relative
+    z-index: 2
+    margin-bottom: 120px
+    +m
+        margin-bottom: 64px
+
+.stepsLabel
+    text-align: center
+    margin-bottom: 48px
+    font-family: "Host Grotesk", sans-serif
+    font-size: 14px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.1em
+    color: $text-tertiary
+    opacity: .5
+
+.stepsConnector
+    position: absolute
+    top: 100px
+    left: 50%
+    transform: translateX(-50%)
+    display: flex
+    align-items: center
+    width: 60%
+    z-index: 0
+    +t
+        display: none
+    span
+        flex: 1
+        height: 1px
+        background: rgba($n2, .08)
+        &:nth-child(2)
+            flex: 0
+            width: 0
+
+.stepsGrid
+    position: relative
+    z-index: 1
+    display: flex
+    gap: 20px
+    +t
+        flex-direction: column
+        max-width: 464px
+        margin: 0 auto
+        gap: 48px
+
+.step
+    position: relative
+    flex: 1
+    border-radius: 40px
+    background: rgba(248, 248, 248, 0.03)
+    border: 1.5px solid rgba(255, 255, 255, 0.06)
+    box-shadow: inset 2px 4px 16px rgba(248, 248, 248, 0.06), 0px 8px 32px rgba(0, 0, 0, 0.2)
+    backdrop-filter: blur(50px)
+
+.stepNumber
+    position: absolute
+    top: -28px
+    left: 50%
+    z-index: 3
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 68px
+    height: 52px
+    transform: translateX(-50%)
+    border-radius: 32px
+    background: linear-gradient(0deg, rgba(248, 248, 248, 0.12), rgba(248, 248, 248, 0.12))
+    box-shadow: 0px 0px 0px 2px rgba(18, 18, 18, 0.20), inset 2px 4px 16px rgba(248, 248, 248, 0.06)
+    backdrop-filter: blur(50px)
+    border: 1.5px solid rgba(255, 255, 255, 0.08)
+    +base-2m
+    span
+        position: relative
+        z-index: 2
+        opacity: .8
+
+.stepContent
+    position: relative
+    z-index: 2
+    padding: 48px 24px 40px
+    text-align: center
+    +m
+        padding: 40px 20px 32px
+
+.stepIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 64px
+    height: 64px
+    margin: 0 auto 24px
+    border-radius: 16px
+    font-size: 28px
+    line-height: 1
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.1)
+    span
+        position: relative
+        z-index: 2
+
+.stepTitle
+    font-family: "Host Grotesk", sans-serif
+    font-size: 22px
+    font-weight: 700
+    line-height: 1.3
+    letter-spacing: -.01em
+    color: $text-primary
+    margin-bottom: 12px
+    opacity: .85
+    +m
+        font-size: 20px
+
+.stepDescription
+    +base-r
+    color: $text-tertiary
+    opacity: .7
+
+// =====================
+// Autonomy Framework
+// =====================
+.framework
+    position: relative
+    z-index: 2
+    border-radius: 48px
+    padding: 60px
+    background: linear-gradient(124deg, rgba(248, 248, 248, 0.04) 0%, rgba(248, 248, 248, 0.01) 46.5%), linear-gradient(180deg, rgba(248, 248, 248, 0.03) 0%, rgba(248, 248, 248, 0.00) 100%)
+    border: 1.5px solid rgba(255, 255, 255, 0.06)
+    box-shadow: 0px 16px 48px rgba(0, 0, 0, 0.2)
+    +m
+        padding: 32px 20px
+        border-radius: 32px
+
+.frameworkHead
+    position: relative
+    z-index: 2
+    text-align: center
+    margin-bottom: 48px
+    +m
+        margin-bottom: 32px
+
+.frameworkTitle
+    +gradient-text
+    margin-bottom: 12px
+    +m
+        font-size: 28px
+
+.frameworkSubtitle
+    +base-r
+    color: $text-tertiary
+    max-width: 480px
+    margin: 0 auto
+    opacity: .7
+
+.tiers
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 16px
+    +t
+        grid-template-columns: 1fr
+        gap: 12px
+
+.tier
+    position: relative
+    border-radius: 28px
+    background: rgba(248, 248, 248, 0.03)
+    border: 1.5px solid rgba(255, 255, 255, 0.06)
+    box-shadow: inset 2px 4px 16px rgba(248, 248, 248, 0.04), 0px 4px 24px rgba(0, 0, 0, 0.15)
+    backdrop-filter: blur(50px)
+    transition: transform .3s, box-shadow .3s
+    &:hover
+        transform: translateY(-2px)
+        box-shadow: inset 2px 4px 16px rgba(248, 248, 248, 0.06), 0px 8px 32px rgba(0, 0, 0, 0.25)
+
+.tierContent
+    position: relative
+    z-index: 2
+    padding: 28px 24px
+    +m
+        padding: 24px 20px
+
+.tierHeader
+    display: flex
+    align-items: center
+    gap: 10px
+    margin-bottom: 12px
+
+.tierDot
+    width: 10px
+    height: 10px
+    border-radius: 50%
+    flex-shrink: 0
+    box-shadow: 0 0 8px currentColor
+
+.tierName
+    font-family: "Host Grotesk", sans-serif
+    font-size: 18px
+    font-weight: 700
+    color: $text-primary
+    opacity: .85
+
+.tierMeaning
+    +base-r
+    color: $text-secondary
+    opacity: .7
+    margin-bottom: 20px
+
+.tierExamples
+    position: relative
+    padding-top: 16px
+    border-top: 1px solid rgba($n2, .08)
+
+.tierExamplesLabel
+    font-size: 11px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.08em
+    color: $text-tertiary
+    opacity: .4
+    margin-bottom: 8px
+
+.tierExamplesText
+    font-size: 13px
+    line-height: 1.5
+    color: $text-tertiary
+    opacity: .6

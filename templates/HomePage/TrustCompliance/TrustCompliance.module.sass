@@ -1,0 +1,154 @@
+@import @/styles/variables
+
+.section
+    position: relative
+    overflow: visible
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+    &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+// =====================
+// Head
+// =====================
+.head
+    position: relative
+    z-index: 2
+    max-width: 640px
+    margin: 0 auto 64px
+    text-align: center
+    +m
+        margin-bottom: 40px
+
+.title
+    +gradient-text
+    +m
+        font-size: 32px
+        line-height: 1.2
+        br
+            display: none
+
+.subtitle
+    +info
+    color: $text-secondary
+    opacity: .7
+    +m
+        font-size: 16px
+
+// =====================
+// Grid
+// =====================
+.grid
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 20px
+    +m
+        grid-template-columns: 1fr
+        gap: 16px
+
+.card
+    position: relative
+    border-radius: 32px
+    padding: 36px 32px
+    background: rgba(248, 248, 248, 0.02)
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    box-shadow: inset 1px 2px 12px rgba(248, 248, 248, 0.03), 0px 8px 28px rgba(0, 0, 0, 0.12)
+    backdrop-filter: blur(50px)
+    transition: transform .3s, box-shadow .3s
+    +m
+        padding: 28px 20px
+        border-radius: 24px
+    &:hover
+        transform: translateY(-3px)
+        box-shadow: inset 1px 2px 12px rgba(248, 248, 248, 0.05), 0px 12px 36px rgba(0, 0, 0, 0.18)
+
+.cardIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 52px
+    height: 52px
+    margin-bottom: 20px
+    border-radius: 16px
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.1)
+
+.cardTitle
+    font-family: "Host Grotesk", sans-serif
+    font-size: 22px
+    font-weight: 700
+    line-height: 1.3
+    letter-spacing: -.01em
+    color: $text-primary
+    margin-bottom: 20px
+    opacity: .88
+
+.cardItems
+    display: flex
+    flex-direction: column
+    gap: 0
+
+.cardItem
+    display: flex
+    align-items: flex-start
+    gap: 12px
+    padding: 10px 0
+    border-bottom: 1px solid rgba($n2, .04)
+    &:first-child
+        border-top: 1px solid rgba($n2, .04)
+
+.itemDot
+    width: 6px
+    height: 6px
+    border-radius: 50%
+    background: #D2FE17
+    box-shadow: 0 0 6px rgba(210, 254, 23, .5), 0 0 12px rgba(210, 254, 23, .2)
+    flex-shrink: 0
+    margin-top: 7px
+
+.cardItem span
+    font-size: 14px
+    line-height: 1.5
+    color: $text-secondary
+    opacity: .75

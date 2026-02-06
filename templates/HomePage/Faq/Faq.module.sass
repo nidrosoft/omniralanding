@@ -1,0 +1,94 @@
+@import @/styles/variables
+
+.section
+    position: relative
+    overflow: visible
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+    &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+.head
+    position: relative
+    z-index: 2
+    max-width: 600px
+    margin: 0 auto 64px
+    text-align: center
+    +m
+        margin-bottom: 40px
+
+.title
+    margin-bottom: 16px
+    +gradient-text
+    +m
+        font-size: 32px
+        line-height: 1.2
+
+.subtitle
+    +info
+    color: $text-secondary
+    opacity: .7
+    +m
+        font-size: 16px
+
+.contactLink
+    color: #D2FE17
+    text-decoration: none
+    font-weight: 500
+    transition: opacity .2s
+    &:hover
+        opacity: .8
+
+.columns
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 20px
+    align-items: start
+    +t
+        grid-template-columns: 1fr
+        gap: 0
+
+.column
+    display: flex
+    flex-direction: column

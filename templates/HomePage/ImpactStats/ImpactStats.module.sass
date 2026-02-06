@@ -1,0 +1,261 @@
+@import @/styles/variables
+
+.section
+    position: relative
+    overflow: visible
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+    &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+// =====================
+// Head
+// =====================
+.head
+    position: relative
+    z-index: 2
+    max-width: 640px
+    margin: 0 auto 64px
+    text-align: center
+    +m
+        margin-bottom: 40px
+
+.title
+    +gradient-text
+    +m
+        font-size: 32px
+        line-height: 1.2
+
+.subtitle
+    +info
+    color: $text-secondary
+    opacity: .7
+    +m
+        font-size: 16px
+
+// =====================
+// Hero Stat — Big centerpiece
+// =====================
+.heroStat
+    position: relative
+    z-index: 2
+    text-align: center
+    margin-bottom: 64px
+    padding: 48px 40px
+    border-radius: 40px
+    background: rgba(210, 254, 23, 0.03)
+    border: 1.5px solid rgba(210, 254, 23, 0.1)
+    box-shadow: inset 2px 4px 16px rgba(210, 254, 23, 0.04), 0px 16px 48px rgba(0, 0, 0, 0.2)
+    backdrop-filter: blur(50px)
+    +m
+        padding: 36px 24px
+        margin-bottom: 40px
+        border-radius: 28px
+
+.heroStatIcon
+    display: flex
+    justify-content: center
+    margin-bottom: 20px
+
+.heroStatValue
+    font-family: "Host Grotesk", sans-serif
+    font-size: 56px
+    font-weight: 700
+    letter-spacing: -.03em
+    line-height: 1
+    color: #D2FE17
+    margin-bottom: 12px
+    +m
+        font-size: 40px
+
+.heroStatLabel
+    +info
+    color: $text-secondary
+    opacity: .7
+    max-width: 400px
+    margin: 0 auto
+
+// =====================
+// Stat Grid
+// =====================
+.grid
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    gap: 16px
+    margin-bottom: 16px
+    +t
+        grid-template-columns: repeat(2, 1fr)
+    +m
+        grid-template-columns: 1fr
+        gap: 12px
+
+.gridThree
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 16px
+    margin-bottom: 64px
+    +t
+        grid-template-columns: repeat(3, 1fr)
+    +m
+        grid-template-columns: 1fr
+        gap: 12px
+        margin-bottom: 40px
+
+.card
+    position: relative
+    border-radius: 28px
+    padding: 32px 24px
+    text-align: center
+    background: rgba(248, 248, 248, 0.02)
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    box-shadow: inset 1px 2px 12px rgba(248, 248, 248, 0.03), 0px 8px 28px rgba(0, 0, 0, 0.12)
+    backdrop-filter: blur(50px)
+    transition: transform .3s, box-shadow .3s
+    +m
+        padding: 24px 16px
+        border-radius: 20px
+    &:hover
+        transform: translateY(-3px)
+        box-shadow: inset 1px 2px 12px rgba(248, 248, 248, 0.05), 0px 12px 36px rgba(0, 0, 0, 0.18)
+
+.cardIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 48px
+    height: 48px
+    margin: 0 auto 16px
+    border-radius: 14px
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.1)
+
+.cardValue
+    font-family: "Host Grotesk", sans-serif
+    font-size: 32px
+    font-weight: 700
+    letter-spacing: -.02em
+    line-height: 1.1
+    +gradient-text
+    margin-bottom: 8px
+    +m
+        font-size: 26px
+
+.cardLabel
+    font-size: 13px
+    line-height: 1.4
+    color: $text-tertiary
+    opacity: .6
+
+// =====================
+// Revenue Breakdown
+// =====================
+.revenueSection
+    position: relative
+    z-index: 2
+
+.revenueLine
+    width: 100%
+    height: 1px
+    background: rgba($n2, .06)
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent)
+    margin-bottom: 32px
+
+.revenueHead
+    text-align: center
+    margin-bottom: 32px
+    span
+        display: inline-block
+        padding: 8px 20px
+        border-radius: 100px
+        font-size: 13px
+        font-weight: 600
+        text-transform: uppercase
+        letter-spacing: 0.06em
+        color: $text-tertiary
+        background: rgba($n2, .04)
+        border: 1px solid rgba($n2, .06)
+
+.revenueGrid
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    gap: 16px
+    +t
+        grid-template-columns: repeat(2, 1fr)
+    +m
+        grid-template-columns: 1fr
+        gap: 12px
+
+.revenueCard
+    position: relative
+    border-radius: 24px
+    padding: 28px 20px
+    text-align: center
+    background: rgba(248, 248, 248, 0.015)
+    border: 1px solid rgba(255, 255, 255, 0.04)
+    backdrop-filter: blur(50px)
+    transition: transform .3s
+    +m
+        padding: 20px 16px
+        border-radius: 18px
+    &:hover
+        transform: translateY(-2px)
+
+.revenueValue
+    font-family: "Host Grotesk", sans-serif
+    font-size: 24px
+    font-weight: 700
+    letter-spacing: -.02em
+    line-height: 1.1
+    color: #D2FE17
+    margin-bottom: 8px
+    +m
+        font-size: 20px
+
+.revenueLabel
+    font-size: 13px
+    line-height: 1.4
+    color: $text-tertiary
+    opacity: .55

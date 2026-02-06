@@ -1,0 +1,976 @@
+@import @/styles/variables
+
+.section
+    position: relative
+    overflow: visible
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+    &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+// =====================
+// Head
+// =====================
+.head
+    position: relative
+    z-index: 2
+    max-width: 600px
+    margin: 0 auto 56px
+    text-align: center
+    +m
+        margin-bottom: 36px
+
+.title
+    +gradient-text
+    +m
+        font-size: 32px
+        line-height: 1.2
+
+.subtitle
+    +info
+    color: $text-secondary
+    opacity: .7
+    +m
+        font-size: 16px
+
+// =====================
+// Demo Container (app window)
+// =====================
+.demoContainer
+    position: relative
+    z-index: 2
+    border-radius: 24px
+    overflow: hidden
+    background: rgba(18, 18, 18, 0.6)
+    border: 1.5px solid rgba(255, 255, 255, 0.06)
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.04)
+    backdrop-filter: blur(40px)
+    +m
+        border-radius: 16px
+
+// ── Window chrome ──
+.windowBar
+    display: flex
+    align-items: center
+    height: 48px
+    padding: 0 20px
+    background: rgba(30, 30, 30, 0.8)
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04)
+
+.windowDots
+    display: flex
+    gap: 8px
+    span
+        width: 12px
+        height: 12px
+        border-radius: 50%
+        background: rgba($n2, .12)
+        &:nth-child(1)
+            background: #ff5f57
+        &:nth-child(2)
+            background: #ffbd2e
+        &:nth-child(3)
+            background: #28c840
+
+.windowTitle
+    margin-left: auto
+    margin-right: auto
+    font-size: 12px
+    font-weight: 500
+    color: $text-tertiary
+    opacity: .5
+    letter-spacing: .02em
+
+// ── Progress Nav ──
+.progressNav
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 16px 24px
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04)
+    background: rgba(25, 25, 25, 0.5)
+    +m
+        padding: 12px 16px
+        overflow-x: auto
+        -webkit-overflow-scrolling: touch
+        &::-webkit-scrollbar
+            display: none
+
+.progressStep
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 6px
+    background: none
+    border: none
+    cursor: pointer
+    z-index: 2
+    transition: all .2s
+    +m
+        min-width: 64px
+
+.progressDot
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 28px
+    height: 28px
+    border-radius: 50%
+    background: rgba($n2, .06)
+    border: 1.5px solid rgba($n2, .08)
+    font-size: 11px
+    font-weight: 700
+    color: $text-tertiary
+    transition: all .3s
+
+.progressStepActive .progressDot
+    background: rgba(210, 254, 23, 0.15)
+    border-color: #D2FE17
+    color: #D2FE17
+    box-shadow: 0 0 16px rgba(210, 254, 23, 0.3)
+
+.progressStepDone .progressDot
+    background: rgba(210, 254, 23, 0.1)
+    border-color: rgba(210, 254, 23, 0.3)
+
+.progressLabel
+    font-size: 10px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: .06em
+    color: $text-tertiary
+    opacity: .4
+    transition: opacity .2s
+    white-space: nowrap
+
+.progressStepActive .progressLabel
+    opacity: 1
+    color: $text-primary
+
+.progressStepDone .progressLabel
+    opacity: .7
+    color: #D2FE17
+
+.progressTrack
+    position: absolute
+    bottom: 0
+    left: 0
+    height: 2px
+    background: linear-gradient(90deg, #D2FE17, #e5ff54)
+    border-radius: 2px
+    transition: width .5s ease
+
+// ── Step Body ──
+.stepBody
+    min-height: 460px
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 48px 40px
+    +t
+        padding: 36px 28px
+    +m
+        padding: 28px 20px
+        min-height: 400px
+
+.stepInner
+    width: 100%
+    max-width: 700px
+    margin: 0 auto
+    animation: fadeSlideIn .4s ease
+
+@keyframes fadeSlideIn
+    from
+        opacity: 0
+        transform: translateY(12px)
+    to
+        opacity: 1
+        transform: translateY(0)
+
+// ── Start screen ──
+.startScreen
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    max-width: 480px
+    margin: 0 auto
+
+.startIcon
+    margin-bottom: 24px
+    animation: pulse 2s infinite
+
+@keyframes pulse
+    0%, 100%
+        transform: scale(1)
+        opacity: 1
+    50%
+        transform: scale(1.06)
+        opacity: .85
+
+.startTitle
+    font-family: "Host Grotesk", sans-serif
+    font-size: 28px
+    font-weight: 700
+    color: $text-primary
+    opacity: .9
+    margin-bottom: 12px
+    +m
+        font-size: 22px
+
+.startDesc
+    +info
+    font-size: 16px
+    color: $text-secondary
+    opacity: .6
+    margin-bottom: 36px
+
+.startBtn
+    display: inline-flex
+    align-items: center
+    gap: 10px
+    height: 52px
+    padding: 0 36px
+    border-radius: 16px
+    border: none
+    background: #D2FE17
+    font-family: inherit
+    font-size: 16px
+    font-weight: 700
+    color: #121212
+    cursor: pointer
+    transition: all .3s
+    +m
+        width: 100%
+        justify-content: center
+        height: 48px
+        padding: 0 24px
+        font-size: 15px
+    &:hover
+        background: #c0e616
+        box-shadow: 0 8px 32px rgba(210, 254, 23, 0.35)
+        transform: translateY(-1px)
+
+// ── Step content shared ──
+.stepContent
+    width: 100%
+
+.stepIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 52px
+    height: 52px
+    margin-bottom: 20px
+    border-radius: 16px
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.1)
+
+.welcomeIcon
+    margin-bottom: 24px
+
+.stepTitle
+    font-family: "Host Grotesk", sans-serif
+    font-size: 24px
+    font-weight: 700
+    color: $text-primary
+    opacity: .9
+    margin-bottom: 8px
+    +m
+        font-size: 20px
+
+.stepDesc
+    font-size: 15px
+    color: $text-secondary
+    opacity: .6
+    margin-bottom: 32px
+    line-height: 1.6
+    +m
+        font-size: 14px
+        margin-bottom: 24px
+
+// ── Welcome step ──
+.welcomeSteps
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 10px
+    +m
+        grid-template-columns: 1fr
+
+.welcomeStep
+    display: flex
+    align-items: center
+    gap: 12px
+    padding: 14px 18px
+    border-radius: 14px
+    background: rgba($n2, .03)
+    border: 1px solid rgba($n2, .05)
+    font-size: 14px
+    font-weight: 500
+    color: $text-secondary
+    opacity: .7
+
+.welcomeNum
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 28px
+    height: 28px
+    min-width: 28px
+    border-radius: 50%
+    background: rgba(210, 254, 23, 0.1)
+    border: 1px solid rgba(210, 254, 23, 0.2)
+    font-size: 12px
+    font-weight: 700
+    color: #D2FE17
+
+// ── Form fields ──
+.formFields
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+.demoField
+    display: flex
+    flex-direction: column
+
+.demoLabel
+    font-size: 12px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: .06em
+    color: $text-tertiary
+    opacity: .5
+    margin-bottom: 10px
+
+.demoInput
+    width: 100%
+    height: 52px
+    padding: 0 20px
+    border-radius: 14px
+    background: rgba($n2, .04)
+    border: 1px solid rgba($n2, .07)
+    font-family: inherit
+    font-size: 15px
+    color: $text-primary
+    transition: all .2s
+    -webkit-appearance: none
+    &:focus
+        outline: none
+        border-color: rgba(210, 254, 23, 0.3)
+        background: rgba($n2, .06)
+    &::placeholder
+        color: rgba($n2, .2)
+
+.demoInputLarge
+    height: 60px
+    font-size: 20px
+    font-weight: 600
+    text-align: center
+    letter-spacing: .04em
+    +m
+        height: 52px
+        font-size: 18px
+
+.sizeOptions
+    display: flex
+    gap: 10px
+    flex-wrap: wrap
+
+.sizeBtn
+    flex: 1
+    min-width: 100px
+    height: 48px
+    border-radius: 14px
+    background: rgba($n2, .04)
+    border: 1.5px solid rgba($n2, .07)
+    font-family: inherit
+    font-size: 14px
+    font-weight: 500
+    color: $text-secondary
+    opacity: .7
+    cursor: pointer
+    transition: all .2s
+    &:hover
+        border-color: rgba($n2, .15)
+        opacity: 1
+
+.sizeBtnActive
+    border-color: #D2FE17 !important
+    background: rgba(210, 254, 23, 0.08) !important
+    color: #D2FE17 !important
+    opacity: 1 !important
+
+// ── AI Name section ──
+.aiNameSection
+    display: flex
+    flex-direction: column
+    gap: 28px
+
+.aiPreview
+    display: flex
+    align-items: flex-start
+    gap: 16px
+    padding: 24px
+    border-radius: 20px
+    background: rgba($n2, .03)
+    border: 1px solid rgba($n2, .05)
+
+.aiAvatar
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 48px
+    height: 48px
+    min-width: 48px
+    border-radius: 50%
+    background: rgba(210, 254, 23, 0.12)
+    border: 2px solid rgba(210, 254, 23, 0.3)
+
+.aiAvatarPulse
+    position: absolute
+    inset: -4px
+    border-radius: 50%
+    border: 2px solid rgba(210, 254, 23, 0.15)
+    animation: avatarPulse 2s infinite
+
+@keyframes avatarPulse
+    0%
+        transform: scale(1)
+        opacity: 1
+    100%
+        transform: scale(1.3)
+        opacity: 0
+
+.aiAvatarLetter
+    font-size: 20px
+    font-weight: 700
+    color: #D2FE17
+
+.aiBubble
+    flex: 1
+    padding: 16px 20px
+    border-radius: 16px
+    background: rgba($n2, .04)
+    border: 1px solid rgba($n2, .06)
+
+.aiBubbleText
+    font-size: 14px
+    line-height: 1.6
+    color: $text-secondary
+    opacity: .8
+    strong
+        color: #D2FE17
+
+// ── Import section ──
+.importSection
+    display: flex
+    flex-direction: column
+
+.progressBar
+    height: 8px
+    border-radius: 8px
+    background: rgba($n2, .06)
+    overflow: hidden
+    margin-bottom: 12px
+
+.progressFill
+    height: 100%
+    border-radius: 8px
+    background: linear-gradient(90deg, #D2FE17, #e5ff54)
+    transition: width .3s ease
+    box-shadow: 0 0 12px rgba(210, 254, 23, 0.4)
+
+.progressLabel
+    font-size: 13px
+    font-weight: 600
+    color: #D2FE17
+    margin-bottom: 24px
+
+.importItems
+    display: flex
+    flex-direction: column
+    gap: 8px
+
+.importItem
+    display: flex
+    align-items: center
+    gap: 12px
+    padding: 14px 18px
+    border-radius: 14px
+    background: rgba($n2, .02)
+    border: 1px solid rgba($n2, .04)
+    transition: all .3s
+
+.importItemDone
+    border-color: rgba(210, 254, 23, 0.1)
+    background: rgba(210, 254, 23, 0.03)
+
+.importItemIcon
+    display: flex
+
+.importItemName
+    flex: 1
+    font-size: 14px
+    font-weight: 500
+    color: $text-secondary
+    opacity: .7
+
+.importItemCount
+    font-size: 14px
+    font-weight: 600
+    color: $text-tertiary
+    opacity: .5
+
+.importItemDone .importItemCount
+    color: #D2FE17
+    opacity: 1
+
+// ── Security toggles ──
+.securityToggles
+    display: flex
+    flex-direction: column
+    gap: 12px
+
+.toggleRow
+    display: flex
+    align-items: center
+    gap: 16px
+    padding: 18px 20px
+    border-radius: 16px
+    background: rgba($n2, .025)
+    border: 1px solid rgba($n2, .05)
+    +m
+        padding: 14px 16px
+
+.toggleIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 40px
+    height: 40px
+    min-width: 40px
+    border-radius: 12px
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.1)
+
+.toggleInfo
+    flex: 1
+
+.toggleLabel
+    font-size: 14px
+    font-weight: 600
+    color: $text-primary
+    opacity: .85
+    margin-bottom: 2px
+
+.toggleDesc
+    font-size: 12px
+    color: $text-tertiary
+    opacity: .5
+
+.toggle
+    position: relative
+    width: 48px
+    height: 28px
+    min-width: 48px
+    border-radius: 14px
+    border: none
+    background: rgba($n2, .1)
+    cursor: pointer
+    transition: background .3s
+
+.toggleOn
+    background: #D2FE17
+
+.toggleKnob
+    position: absolute
+    top: 3px
+    left: 3px
+    width: 22px
+    height: 22px
+    border-radius: 50%
+    background: white
+    transition: transform .3s
+    box-shadow: 0 2px 6px rgba(0,0,0,.2)
+
+.toggleOn .toggleKnob
+    transform: translateX(20px)
+
+// ── Agent grid ──
+.agentGrid
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 12px
+    +t
+        grid-template-columns: repeat(2, 1fr)
+    +m
+        grid-template-columns: 1fr
+
+.agentCard
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 10px
+    padding: 24px 16px
+    border-radius: 20px
+    background: rgba($n2, .02)
+    border: 1.5px solid rgba($n2, .05)
+    cursor: pointer
+    transition: all .25s
+    text-align: center
+    font-family: inherit
+    color: inherit
+    &:hover
+        border-color: rgba($n2, .12)
+        background: rgba($n2, .04)
+
+.agentCardActive
+    border-color: rgba(210, 254, 23, 0.2) !important
+    background: rgba(210, 254, 23, 0.04) !important
+
+.agentCardIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 44px
+    height: 44px
+    border-radius: 14px
+    background: rgba($n2, .04)
+    border: 1px solid rgba($n2, .06)
+    transition: all .25s
+
+.agentCardName
+    font-size: 13px
+    font-weight: 700
+    color: $text-primary
+    opacity: .85
+
+.agentCardDesc
+    font-size: 11px
+    color: $text-tertiary
+    opacity: .5
+    line-height: 1.4
+
+.agentCardToggle
+    margin-top: auto
+    padding: 5px 16px
+    border-radius: 8px
+    font-size: 11px
+    font-weight: 700
+    text-transform: uppercase
+    letter-spacing: .06em
+    color: $text-tertiary
+    background: rgba($n2, .05)
+    border: 1px solid rgba($n2, .06)
+    transition: all .2s
+
+.agentCardToggleOn
+    background: rgba(210, 254, 23, 0.12)
+    border-color: rgba(210, 254, 23, 0.2)
+    color: #D2FE17
+
+// =====================
+// Dashboard
+// =====================
+.dashboard
+    width: 100%
+    opacity: 0
+    transform: translateY(8px)
+    transition: all .6s ease
+
+.dashboardLoaded
+    opacity: 1
+    transform: translateY(0)
+
+.dashHeader
+    display: flex
+    align-items: center
+    gap: 16px
+    padding-bottom: 24px
+    border-bottom: 1px solid rgba($n2, .05)
+    margin-bottom: 24px
+
+.dashLogo
+    display: flex
+    align-items: center
+    gap: 10px
+    font-size: 15px
+    font-weight: 700
+    color: $text-primary
+    opacity: .9
+
+.dashLogoIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 36px
+    height: 36px
+    border-radius: 10px
+    background: rgba(210, 254, 23, 0.08)
+    border: 1px solid rgba(210, 254, 23, 0.15)
+
+.dashGreeting
+    margin-left: auto
+    font-size: 14px
+    color: $text-secondary
+    opacity: .5
+    +m
+        display: none
+
+.dashNotif
+    position: relative
+    display: flex
+
+.dashNotifBadge
+    position: absolute
+    top: -4px
+    right: -6px
+    width: 16px
+    height: 16px
+    border-radius: 50%
+    background: #ef4444
+    font-size: 9px
+    font-weight: 700
+    color: white
+    display: flex
+    justify-content: center
+    align-items: center
+
+.dashStats
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    gap: 12px
+    margin-bottom: 24px
+    +m
+        grid-template-columns: repeat(2, 1fr)
+
+.dashStat
+    padding: 18px 16px
+    border-radius: 16px
+    background: rgba($n2, .025)
+    border: 1px solid rgba($n2, .05)
+    text-align: center
+
+.dashStatLabel
+    font-size: 11px
+    font-weight: 500
+    color: $text-tertiary
+    opacity: .5
+    margin-bottom: 6px
+
+.dashStatValue
+    font-size: 22px
+    font-weight: 700
+    +gradient-text
+    margin-bottom: 4px
+    +m
+        font-size: 18px
+
+.dashStatChange
+    font-size: 11px
+    font-weight: 600
+    color: #D2FE17
+
+// ── Activity feed ──
+.dashFeed
+    margin-bottom: 24px
+
+.dashFeedTitle
+    display: flex
+    align-items: center
+    gap: 8px
+    font-size: 13px
+    font-weight: 700
+    color: $text-primary
+    opacity: .7
+    margin-bottom: 14px
+
+.liveDot
+    width: 8px
+    height: 8px
+    border-radius: 50%
+    background: #D2FE17
+    animation: livePulse 1.5s infinite
+
+@keyframes livePulse
+    0%, 100%
+        opacity: 1
+        box-shadow: 0 0 0 0 rgba(210, 254, 23, 0.4)
+    50%
+        opacity: .7
+        box-shadow: 0 0 0 6px rgba(210, 254, 23, 0)
+
+.dashFeedItem
+    display: flex
+    align-items: flex-start
+    gap: 12px
+    padding: 12px 0
+    &:not(:last-child)
+        border-bottom: 1px solid rgba($n2, .03)
+
+.dashFeedDot
+    margin-top: 5px
+    width: 8px
+    height: 8px
+    min-width: 8px
+    border-radius: 50%
+
+.dashFeedContent
+    flex: 1
+    font-size: 13px
+    line-height: 1.5
+    color: $text-secondary
+    opacity: .7
+
+.dashFeedAgent
+    font-weight: 700
+
+.dashFeedTime
+    font-size: 11px
+    color: $text-tertiary
+    opacity: .4
+    white-space: nowrap
+    margin-top: 2px
+
+// ── Dashboard CTA ──
+.dashCta
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 24px 28px
+    border-radius: 20px
+    background: rgba(210, 254, 23, 0.05)
+    border: 1px solid rgba(210, 254, 23, 0.12)
+    +m
+        flex-direction: column
+        text-align: center
+        gap: 16px
+
+.dashCtaText
+    font-size: 15px
+    line-height: 1.5
+    color: $text-secondary
+    opacity: .8
+    strong
+        color: $text-primary
+
+.dashCtaBtn
+    display: inline-flex
+    align-items: center
+    height: 44px
+    padding: 0 28px
+    border-radius: 12px
+    background: #D2FE17
+    font-size: 14px
+    font-weight: 700
+    color: #121212
+    text-decoration: none
+    flex-shrink: 0
+    transition: all .3s
+    &:hover
+        background: #c0e616
+        box-shadow: 0 6px 20px rgba(210, 254, 23, 0.3)
+
+// ── Navigation bar ──
+.navBar
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 16px 24px
+    border-top: 1px solid rgba($n2, .04)
+    background: rgba(25, 25, 25, 0.5)
+    +m
+        padding: 12px 16px
+
+.navBtn
+    display: inline-flex
+    align-items: center
+    gap: 8px
+    height: 40px
+    padding: 0 20px
+    border-radius: 12px
+    font-family: inherit
+    font-size: 13px
+    font-weight: 600
+    border: none
+    cursor: pointer
+    transition: all .2s
+    text-decoration: none
+    +m
+        padding: 0 16px
+        font-size: 12px
+        height: 38px
+
+.navBtnPrev
+    background: rgba($n2, .06)
+    color: $text-secondary
+    opacity: .7
+    &:hover
+        opacity: 1
+        background: rgba($n2, .1)
+    &:disabled
+        opacity: .25
+        cursor: not-allowed
+
+.navBtnNext
+    background: rgba(210, 254, 23, 0.12)
+    color: #D2FE17
+    border: 1px solid rgba(210, 254, 23, 0.15)
+    &:hover
+        background: rgba(210, 254, 23, 0.2)
+        box-shadow: 0 4px 12px rgba(210, 254, 23, 0.15)
+
+.navBtnCta
+    background: #D2FE17
+    color: #121212
+    &:hover
+        background: #c0e616
+
+.navStep
+    font-size: 12px
+    font-weight: 500
+    color: $text-tertiary
+    opacity: .4

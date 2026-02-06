@@ -1,0 +1,237 @@
+@import @/styles/variables
+
+.section
+    position: relative
+    overflow: visible
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+    &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+// =====================
+// Head
+// =====================
+.head
+    position: relative
+    z-index: 2
+    max-width: 640px
+    margin: 0 auto 64px
+    text-align: center
+    +m
+        margin-bottom: 40px
+
+.title
+    +gradient-text
+    +m
+        font-size: 32px
+        line-height: 1.2
+        br
+            display: none
+
+.subtitle
+    +info
+    color: $text-secondary
+    opacity: .7
+
+// =====================
+// Layout
+// =====================
+.layout
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: 1fr 1.4fr
+    gap: 40px
+    align-items: stretch
+    +t
+        grid-template-columns: 1fr
+        gap: 40px
+
+// =====================
+// Incentives
+// =====================
+.incentives
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    gap: 16px
+    +t
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        gap: 16px
+    +m
+        grid-template-columns: 1fr
+
+.incentive
+    display: flex
+    align-items: flex-start
+    gap: 16px
+    padding: 24px
+    border-radius: 24px
+    flex: 1
+    background: rgba(248, 248, 248, 0.02)
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    box-shadow: inset 1px 2px 12px rgba(248, 248, 248, 0.03), 0px 8px 28px rgba(0, 0, 0, 0.12)
+    backdrop-filter: blur(50px)
+    +m
+        padding: 20px
+
+.incentiveIcon
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 48px
+    height: 48px
+    min-width: 48px
+    border-radius: 14px
+    background: rgba(210, 254, 23, 0.06)
+    border: 1px solid rgba(210, 254, 23, 0.1)
+
+.incentiveContent
+    flex: 1
+
+.incentiveTitle
+    font-family: "Host Grotesk", sans-serif
+    font-size: 16px
+    font-weight: 700
+    color: $text-primary
+    opacity: .9
+    margin-bottom: 4px
+
+.incentiveDetail
+    font-size: 14px
+    color: $text-tertiary
+    opacity: .6
+
+// =====================
+// Form
+// =====================
+.form
+    border-radius: 32px
+    padding: 36px 32px
+    background: rgba(248, 248, 248, 0.025)
+    border: 1.5px solid rgba(255, 255, 255, 0.06)
+    box-shadow: inset 2px 4px 16px rgba(248, 248, 248, 0.04), 0px 16px 48px rgba(0, 0, 0, 0.2)
+    backdrop-filter: blur(50px)
+    +m
+        padding: 28px 20px
+        border-radius: 24px
+
+.formRow
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 16px
+    margin-bottom: 16px
+    +m
+        grid-template-columns: 1fr
+        gap: 12px
+        margin-bottom: 12px
+
+.field
+    display: flex
+    flex-direction: column
+
+.label
+    font-size: 12px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.06em
+    color: $text-tertiary
+    opacity: .5
+    margin-bottom: 8px
+
+.input,
+.select
+    width: 100%
+    height: 48px
+    padding: 0 16px
+    border-radius: 14px
+    background: rgba(248, 248, 248, 0.04)
+    border: 1px solid rgba(255, 255, 255, 0.06)
+    font-family: inherit
+    font-size: 14px
+    color: $text-primary
+    transition: border-color .2s, background .2s
+    -webkit-appearance: none
+    appearance: none
+    &:focus
+        outline: none
+        border-color: rgba(210, 254, 23, 0.3)
+        background: rgba(248, 248, 248, 0.06)
+    &::placeholder
+        color: rgba($n2, .2)
+
+.select
+    cursor: pointer
+    color: $text-secondary
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(248,248,248,0.3)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    background-repeat: no-repeat
+    background-position: right 16px center
+    padding-right: 40px
+    option
+        background: #282828
+        color: $text-primary
+
+.submitBtn
+    width: 100%
+    height: 52px
+    margin-top: 8px
+    border-radius: 16px
+    border: none
+    font-family: inherit
+    font-size: 16px
+    font-weight: 700
+    color: #121212
+    background: #D2FE17
+    cursor: pointer
+    transition: all .3s
+    &:hover
+        background: #c0e616
+        box-shadow: 0 8px 24px rgba(210, 254, 23, .3)
+
+.formNote
+    margin-top: 16px
+    text-align: center
+    font-size: 12px
+    color: $text-tertiary
+    opacity: .4
+    font-style: italic

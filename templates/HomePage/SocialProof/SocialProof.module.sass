@@ -1,0 +1,183 @@
+@import @/styles/variables
+
+.section
+    position: relative
+    overflow: visible
+
+.container
+    position: relative
+
+.lines
+    position: absolute
+    top: 0
+    left: 40px
+    right: 40px
+    bottom: 0
+    display: flex
+    justify-content: space-between
+    pointer-events: none
+    +t
+        left: 32px
+        right: 32px
+    +m
+        left: 24px
+        right: 24px
+    span
+        width: 1px
+        height: 100%
+        background: rgba($n2, .05)
+    // Horizontal top line
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+    // Horizontal bottom line
+    &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: -100vw
+        right: -100vw
+        height: 1px
+        background: rgba($n2, .05)
+        mask-image: linear-gradient(to right, transparent, rgba(0,0,0,.15) 20%, black 35%, black 65%, rgba(0,0,0,.15) 80%, transparent)
+        pointer-events: none
+
+.head
+    position: relative
+    z-index: 2
+    max-width: 600px
+    margin: 0 auto 80px
+    text-align: center
+    +m
+        margin-bottom: 48px
+
+.label
+    display: inline-block
+    position: relative
+    margin-bottom: 16px
+    padding: 6px 16px
+    border-radius: 100px
+    font-size: 12px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.05em
+    color: $text-tertiary
+    background: rgba($n2, .05)
+    border: 1.5px solid rgba($n2, .08)
+    overflow: hidden
+    span
+        position: relative
+        z-index: 2
+
+.title
+    +gradient-text
+    +m
+        font-size: 36px
+        line-height: 1.2
+
+.subtitle
+    +info
+    color: $text-secondary
+    opacity: .8
+    +m
+        font-size: 16px
+
+.grid
+    position: relative
+    z-index: 2
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    gap: 20px
+    margin-bottom: 80px
+    +t
+        grid-template-columns: repeat(2, 1fr)
+    +m
+        grid-template-columns: 1fr
+        gap: 16px
+        margin-bottom: 48px
+
+.card
+    position: relative
+    border-radius: 40px
+    background: rgba(248, 248, 248, 0.03)
+    border: 1.5px solid rgba(255, 255, 255, 0.06)
+    box-shadow: inset 2px 4px 16px rgba(248, 248, 248, 0.06), 0px 8px 32px rgba(0, 0, 0, 0.2)
+    backdrop-filter: blur(50px)
+    transition: transform .3s
+    &:hover
+        transform: translateY(-4px)
+
+.cardInner
+    position: relative
+    z-index: 2
+    padding: 40px 24px
+    text-align: center
+
+.value
+    margin-bottom: 12px
+    font-family: "Host Grotesk", sans-serif
+    font-size: 48px
+    font-weight: 700
+    letter-spacing: -.02em
+    line-height: 1
+    +gradient-text
+    +m
+        font-size: 40px
+
+.cardLabel
+    +base-r
+    color: $text-tertiary
+    opacity: .6
+
+.logos
+    position: relative
+    z-index: 2
+    text-align: center
+
+.logosLabel
+    margin-bottom: 24px
+    font-size: 13px
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.08em
+    color: $text-tertiary
+    opacity: .4
+
+.logosRow
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-wrap: wrap
+    gap: 12px
+    +m
+        gap: 10px
+
+.logoItem
+    position: relative
+    padding: 10px 24px
+    border-radius: 32px
+    font-size: 14px
+    font-weight: 500
+    color: $text-tertiary
+    background: rgba(248, 248, 248, 0.03)
+    border: 1.5px solid rgba(255, 255, 255, 0.06)
+    backdrop-filter: blur(50px)
+    transition: all .3s
+    +m
+        padding: 8px 16px
+        font-size: 12px
+    span
+        position: relative
+        z-index: 2
+        opacity: .5
+    &:hover
+        background: rgba(248, 248, 248, 0.06)
+        span
+            opacity: .8
