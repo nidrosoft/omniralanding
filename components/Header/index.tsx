@@ -10,6 +10,7 @@ const navLinks = [
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "Agents", href: "#agents" },
+    { label: "See Demo", href: "#demo", mobileOnly: true },
     { label: "Pricing", href: "#pricing" },
     { label: "Compliance", href: "#compliance" },
     { label: "FAQ", href: "#faq" },
@@ -71,7 +72,9 @@ const Header = ({}: HeaderProps) => {
                         {navLinks.map((link) => (
                             <a
                                 key={link.label}
-                                className={styles.navLink}
+                                className={cn(styles.navLink, {
+                                    [styles.mobileOnly]: (link as any).mobileOnly,
+                                })}
                                 href={link.href}
                                 onClick={(e) =>
                                     handleNavClick(e, link.href)

@@ -44,8 +44,7 @@
 .button
     white-space: nowrap
     +t
-        height: 44px
-        padding: 0 20px
+        display: none
 
 // =====================
 // Navigation
@@ -100,6 +99,11 @@
         opacity: 1
         color: $text-primary
         background: rgba(248, 248, 248, 0.04)
+
+.mobileOnly
+    display: none
+    +t
+        display: block
 
 // =====================
 // Burger (mobile)
