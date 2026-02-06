@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import cn from "classnames";
 import Label from "@/components/Label";
 import styles from "./InteractiveDemo.module.sass";
+import { FadeIn } from "@/components/Animations";
 import {
     Calendar,
     DollarCircle,
@@ -725,14 +726,20 @@ const InteractiveDemo = ({}: InteractiveDemoProps) => {
                 </div>
 
                 <div className={styles.head}>
-                    <Label title="Interactive Demo" />
-                    <h2 className={cn("h2", styles.title)}>
-                        See Omnira in action
-                    </h2>
-                    <p className={styles.subtitle}>
-                        Walk through the setup experience. Click through each
-                        step to see how your practice comes alive with AI.
-                    </p>
+                    <FadeIn direction="up" delay={0} duration={0.6}>
+                        <Label title="Interactive Demo" />
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.1} scale={0.95}>
+                        <h2 className={cn("h2", styles.title)}>
+                            See Omnira in action
+                        </h2>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.2}>
+                        <p className={styles.subtitle}>
+                            Walk through the setup experience. Click through each
+                            step to see how your practice comes alive with AI.
+                        </p>
+                    </FadeIn>
                 </div>
 
                 <div className={styles.demoContainer}>

@@ -11,6 +11,7 @@ import {
     Personalcard,
     TickCircle,
 } from "iconsax-react";
+import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
 
 type WaitlistProps = {};
 
@@ -108,38 +109,46 @@ const Waitlist = ({}: WaitlistProps) => {
                 </div>
 
                 <div className={styles.head}>
-                    <Label title="Join the Waitlist" />
-                    <h2 className={cn("h2", styles.title)}>
-                        Be the first to run your
-                        <br />
-                        practice on Omnira.
-                    </h2>
-                    <div className={styles.subtitle}>
-                        Join 500+ dental professionals already on the waitlist.
-                        Get early access, founding member pricing, and help
-                        shape the future of practice management.
-                    </div>
+                    <FadeIn direction="up" delay={0} duration={0.6}>
+                        <Label title="Join the Waitlist" />
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.1} scale={0.95}>
+                        <h2 className={cn("h2", styles.title)}>
+                            Be the first to run your
+                            <br />
+                            practice on Omnira.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.2}>
+                        <div className={styles.subtitle}>
+                            Join 500+ dental professionals already on the waitlist.
+                            Get early access, founding member pricing, and help
+                            shape the future of practice management.
+                        </div>
+                    </FadeIn>
                 </div>
 
                 <div className={styles.layout}>
                     {/* Left — Incentives */}
-                    <div className={styles.incentives}>
+                    <StaggerChildren className={styles.incentives} staggerDelay={0.1}>
                         {incentives.map((item, index) => (
-                            <div className={styles.incentive} key={index}>
-                                <div className={styles.incentiveIcon}>
-                                    {item.icon(24)}
-                                </div>
-                                <div className={styles.incentiveContent}>
-                                    <div className={styles.incentiveTitle}>
-                                        {item.title}
+                            <StaggerItem key={index}>
+                                <div className={styles.incentive}>
+                                    <div className={styles.incentiveIcon}>
+                                        {item.icon(24)}
                                     </div>
-                                    <div className={styles.incentiveDetail}>
-                                        {item.detail}
+                                    <div className={styles.incentiveContent}>
+                                        <div className={styles.incentiveTitle}>
+                                            {item.title}
+                                        </div>
+                                        <div className={styles.incentiveDetail}>
+                                            {item.detail}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </StaggerItem>
                         ))}
-                    </div>
+                    </StaggerChildren>
 
                     {/* Right — Form or Success */}
                     {isSubmitted ? (

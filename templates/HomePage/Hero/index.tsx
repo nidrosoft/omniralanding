@@ -1,6 +1,7 @@
 "use client";
 
 import cn from "classnames";
+import { motion } from "framer-motion";
 import styles from "./Hero.module.sass";
 
 type HeroProps = {};
@@ -17,20 +18,40 @@ const Hero = ({}: HeroProps) => (
     <div className={cn("section", styles.hero)}>
         <div className={cn("container", styles.container)}>
             <div className={styles.head}>
-                <div className={styles.badge}>
+                <motion.div
+                    className={styles.badge}
+                    initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                >
                     Omnira for Dental — Now in Early Access
-                </div>
-                <h1 className={cn("h1", styles.title)}>
+                </motion.div>
+                <motion.h1
+                    className={cn("h1", styles.title)}
+                    initial={{ opacity: 0, scale: 0.88, y: 30 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                >
                     Your dental practice
                     <br />
                     <span className={styles.titleAccent}>running itself.</span>
-                </h1>
-                <div className={styles.info}>
+                </motion.h1>
+                <motion.div
+                    className={styles.info}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
+                >
                     Omnira deploys 5 AI agents that handle scheduling,
                     insurance, billing, patient communication, and operations
                     so your team focuses on patient care, not paperwork.
-                </div>
-                <div className={styles.buttons}>
+                </motion.div>
+                <motion.div
+                    className={styles.buttons}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.75, ease: [0.25, 0.1, 0.25, 1] }}
+                >
                     <a
                         className={cn(styles.button, styles.ctaButton)}
                         href="#waitlist"
@@ -53,21 +74,36 @@ const Hero = ({}: HeroProps) => (
                         </svg>
                         <span>See Demo</span>
                     </a>
-                </div>
-                <div className={styles.socialProof}>
+                </motion.div>
+                <motion.div
+                    className={styles.socialProof}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.95, ease: [0.25, 0.1, 0.25, 1] }}
+                >
                     <div className={styles.emojis}>
                         {["🧑‍⚕️", "👩🏾‍⚕️", "👨🏼‍⚕️", "👩🏽‍⚕️", "👨🏿‍⚕️", "👩🏻‍⚕️"].map(
                             (emoji, index) => (
-                                <span className={styles.emoji} key={index}>
+                                <motion.span
+                                    className={styles.emoji}
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{
+                                        duration: 0.4,
+                                        delay: 1.0 + index * 0.08,
+                                        ease: [0.16, 1, 0.3, 1],
+                                    }}
+                                >
                                     {emoji}
-                                </span>
+                                </motion.span>
                             )
                         )}
                     </div>
                     <div className={styles.proofText}>
                         <span>500+</span> dentists &amp; practice owners across the US already joined
                     </div>
-                </div>
+                </motion.div>
             </div>
         </div>
     </div>

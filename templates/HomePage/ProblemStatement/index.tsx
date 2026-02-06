@@ -1,3 +1,5 @@
+"use client";
+
 import cn from "classnames";
 import styles from "./ProblemStatement.module.sass";
 import {
@@ -6,6 +8,7 @@ import {
     MoneyRemove,
     EyeSlash,
 } from "iconsax-react";
+import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
 
 type ProblemStatementProps = {};
 
@@ -52,46 +55,54 @@ const ProblemStatement = ({}: ProblemStatementProps) => (
                 <span></span>
             </div>
             <div className={styles.head}>
-                <div className={styles.label}>
-                    <span>The Problem</span>
-                </div>
-                <h2 className={cn("h2", styles.title)}>
-                    Your front desk is doing the work of&nbsp;5&nbsp;people.
-                    <br />
-                    With&nbsp;5&nbsp;different&nbsp;tools.
-                </h2>
+                <FadeIn direction="up" delay={0} duration={0.6}>
+                    <div className={styles.label}>
+                        <span>The Problem</span>
+                    </div>
+                </FadeIn>
+                <FadeIn direction="up" delay={0.1} scale={0.95}>
+                    <h2 className={cn("h2", styles.title)}>
+                        Your front desk is doing the work of&nbsp;5&nbsp;people.
+                        <br />
+                        With&nbsp;5&nbsp;different&nbsp;tools.
+                    </h2>
+                </FadeIn>
             </div>
-            <div className={styles.grid}>
+            <StaggerChildren className={styles.grid} staggerDelay={0.12}>
                 {painPoints.map((point, index) => (
-                    <div className={styles.card} key={index}>
-                        <div className={styles.cardContent}>
-                            <div className={styles.cardIcon}>
-                                {point.icon}
-                            </div>
-                            <h3 className={styles.cardTitle}>{point.title}</h3>
-                            <p className={styles.cardDescription}>
-                                {point.description}
-                            </p>
-                            <div className={styles.cardStat}>
-                                <div className={styles.cardStatValue}>
-                                    {point.stat}
+                    <StaggerItem key={index} scale>
+                        <div className={styles.card}>
+                            <div className={styles.cardContent}>
+                                <div className={styles.cardIcon}>
+                                    {point.icon}
                                 </div>
-                                <div className={styles.cardStatLabel}>
-                                    {point.statLabel}
+                                <h3 className={styles.cardTitle}>{point.title}</h3>
+                                <p className={styles.cardDescription}>
+                                    {point.description}
+                                </p>
+                                <div className={styles.cardStat}>
+                                    <div className={styles.cardStatValue}>
+                                        {point.stat}
+                                    </div>
+                                    <div className={styles.cardStatLabel}>
+                                        {point.statLabel}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </StaggerItem>
                 ))}
-            </div>
-            <div className={styles.closing}>
-                <div className={styles.closingLine}></div>
-                <p className={styles.closingText}>
-                    What if one platform replaced all of them — and the agents
-                    did the work?
-                </p>
-                <div className={styles.closingLine}></div>
-            </div>
+            </StaggerChildren>
+            <FadeIn direction="up" delay={0.2}>
+                <div className={styles.closing}>
+                    <div className={styles.closingLine}></div>
+                    <p className={styles.closingText}>
+                        What if one platform replaced all of them — and the agents
+                        did the work?
+                    </p>
+                    <div className={styles.closingLine}></div>
+                </div>
+            </FadeIn>
         </div>
     </div>
 );

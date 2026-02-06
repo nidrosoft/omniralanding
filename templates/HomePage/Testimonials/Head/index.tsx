@@ -1,7 +1,10 @@
+"use client";
+
 import cn from "classnames";
 import Label from "@/components/Label";
 import Image from "@/components/Image";
 import styles from "./Head.module.sass";
+import { FadeIn } from "@/components/Animations";
 
 type HeadProps = {};
 
@@ -36,13 +39,19 @@ const Head = ({}: HeadProps) => (
                 />
             </div>
         </div>
-        <Label title="Testimonials" />
-        <div className={cn("h2", styles.title)}>
-            What dentists are saying
-        </div>
-        <div className={styles.info}>
-            Real feedback from doctors who tried the Omnira demo.
-        </div>
+        <FadeIn direction="up" delay={0} duration={0.6}>
+            <Label title="Testimonials" />
+        </FadeIn>
+        <FadeIn direction="up" delay={0.1} scale={0.95}>
+            <div className={cn("h2", styles.title)}>
+                What dentists are saying
+            </div>
+        </FadeIn>
+        <FadeIn direction="up" delay={0.2}>
+            <div className={styles.info}>
+                Real feedback from doctors who tried the Omnira demo.
+            </div>
+        </FadeIn>
     </div>
 );
 

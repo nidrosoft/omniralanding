@@ -13,6 +13,7 @@ import {
     ReceiptText,
     People,
 } from "iconsax-react";
+import { FadeIn, ScaleIn, StaggerChildren, StaggerItem } from "@/components/Animations";
 
 type ImpactStatsProps = {};
 
@@ -89,70 +90,86 @@ const ImpactStats = ({}: ImpactStatsProps) => {
                 </div>
 
                 <div className={styles.head}>
-                    <Label title="By the Numbers" />
-                    <h2 className={cn("h2", styles.title)}>
-                        The numbers don&apos;t lie.
-                    </h2>
-                    <div className={styles.subtitle}>
-                        Real, measurable impact across every area of your
-                        practice — from day one.
-                    </div>
+                    <FadeIn direction="up" delay={0} duration={0.6}>
+                        <Label title="By the Numbers" />
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.1} scale={0.95}>
+                        <h2 className={cn("h2", styles.title)}>
+                            The numbers don&apos;t lie.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.2}>
+                        <div className={styles.subtitle}>
+                            Real, measurable impact across every area of your
+                            practice — from day one.
+                        </div>
+                    </FadeIn>
                 </div>
 
                 {/* Hero Stat */}
-                <div className={styles.heroStat}>
-                    <div className={styles.heroStatIcon}>
-                        {stats[0].icon(36)}
+                <ScaleIn delay={0.1} initialScale={0.85} duration={0.9}>
+                    <div className={styles.heroStat}>
+                        <div className={styles.heroStatIcon}>
+                            {stats[0].icon(36)}
+                        </div>
+                        <div className={styles.heroStatValue}>{stats[0].value}</div>
+                        <div className={styles.heroStatLabel}>{stats[0].label}</div>
                     </div>
-                    <div className={styles.heroStatValue}>{stats[0].value}</div>
-                    <div className={styles.heroStatLabel}>{stats[0].label}</div>
-                </div>
+                </ScaleIn>
 
                 {/* Stat Grid — Top Row (4 columns) */}
-                <div className={styles.grid}>
+                <StaggerChildren className={styles.grid} staggerDelay={0.1}>
                     {stats.slice(1, 5).map((stat, index) => (
-                        <div className={styles.card} key={index}>
-                            <div className={styles.cardIcon}>
-                                {stat.icon(22)}
+                        <StaggerItem key={index} scale>
+                            <div className={styles.card}>
+                                <div className={styles.cardIcon}>
+                                    {stat.icon(22)}
+                                </div>
+                                <div className={styles.cardValue}>{stat.value}</div>
+                                <div className={styles.cardLabel}>{stat.label}</div>
                             </div>
-                            <div className={styles.cardValue}>{stat.value}</div>
-                            <div className={styles.cardLabel}>{stat.label}</div>
-                        </div>
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerChildren>
 
                 {/* Stat Grid — Bottom Row (3 columns) */}
-                <div className={styles.gridThree}>
+                <StaggerChildren className={styles.gridThree} staggerDelay={0.1}>
                     {stats.slice(5).map((stat, index) => (
-                        <div className={styles.card} key={index}>
-                            <div className={styles.cardIcon}>
-                                {stat.icon(22)}
+                        <StaggerItem key={index} scale>
+                            <div className={styles.card}>
+                                <div className={styles.cardIcon}>
+                                    {stat.icon(22)}
+                                </div>
+                                <div className={styles.cardValue}>{stat.value}</div>
+                                <div className={styles.cardLabel}>{stat.label}</div>
                             </div>
-                            <div className={styles.cardValue}>{stat.value}</div>
-                            <div className={styles.cardLabel}>{stat.label}</div>
-                        </div>
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerChildren>
 
                 {/* Revenue Breakdown */}
-                <div className={styles.revenueSection}>
-                    <div className={styles.revenueLine}></div>
-                    <div className={styles.revenueHead}>
-                        <span>Where the revenue comes from</span>
+                <FadeIn direction="up" delay={0.1}>
+                    <div className={styles.revenueSection}>
+                        <div className={styles.revenueLine}></div>
+                        <div className={styles.revenueHead}>
+                            <span>Where the revenue comes from</span>
+                        </div>
+                        <StaggerChildren className={styles.revenueGrid} staggerDelay={0.12}>
+                            {revenueStats.map((stat, index) => (
+                                <StaggerItem key={index} scale>
+                                    <div className={styles.revenueCard}>
+                                        <div className={styles.revenueValue}>
+                                            {stat.value}
+                                        </div>
+                                        <div className={styles.revenueLabel}>
+                                            {stat.label}
+                                        </div>
+                                    </div>
+                                </StaggerItem>
+                            ))}
+                        </StaggerChildren>
                     </div>
-                    <div className={styles.revenueGrid}>
-                        {revenueStats.map((stat, index) => (
-                            <div className={styles.revenueCard} key={index}>
-                                <div className={styles.revenueValue}>
-                                    {stat.value}
-                                </div>
-                                <div className={styles.revenueLabel}>
-                                    {stat.label}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                </FadeIn>
             </div>
         </div>
     );

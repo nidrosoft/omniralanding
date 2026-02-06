@@ -4,6 +4,7 @@ import cn from "classnames";
 import Label from "@/components/Label";
 import Item from "./Item";
 import styles from "./Faq.module.sass";
+import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
 
 import { faq } from "@/mocks/faq";
 
@@ -23,30 +24,40 @@ const Faq = ({}: FaqProps) => {
                 </div>
 
                 <div className={styles.head}>
-                    <Label title="FAQ" />
-                    <h2 className={cn("h2", styles.title)}>
-                        Frequently asked questions
-                    </h2>
-                    <div className={styles.subtitle}>
-                        Everything you need to know about Omnira. Can&apos;t
-                        find what you&apos;re looking for?{" "}
-                        <a href="mailto:hello@omnira.space" className={styles.contactLink}>
-                            Contact us
-                        </a>
-                    </div>
+                    <FadeIn direction="up" delay={0} duration={0.6}>
+                        <Label title="FAQ" />
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.1} scale={0.95}>
+                        <h2 className={cn("h2", styles.title)}>
+                            Frequently asked questions
+                        </h2>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.2}>
+                        <div className={styles.subtitle}>
+                            Everything you need to know about Omnira. Can&apos;t
+                            find what you&apos;re looking for?{" "}
+                            <a href="mailto:hello@omnira.space" className={styles.contactLink}>
+                                Contact us
+                            </a>
+                        </div>
+                    </FadeIn>
                 </div>
 
                 <div className={styles.columns}>
-                    <div className={styles.column}>
+                    <StaggerChildren className={styles.column} staggerDelay={0.08}>
                         {leftColumn.map((item) => (
-                            <Item item={item} key={item.id} />
+                            <StaggerItem key={item.id}>
+                                <Item item={item} />
+                            </StaggerItem>
                         ))}
-                    </div>
-                    <div className={styles.column}>
+                    </StaggerChildren>
+                    <StaggerChildren className={styles.column} staggerDelay={0.08} delay={0.15}>
                         {rightColumn.map((item) => (
-                            <Item item={item} key={item.id} />
+                            <StaggerItem key={item.id}>
+                                <Item item={item} />
+                            </StaggerItem>
                         ))}
-                    </div>
+                    </StaggerChildren>
                 </div>
             </div>
         </div>

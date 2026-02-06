@@ -9,6 +9,7 @@ import {
     Wifi,
     Task,
 } from "iconsax-react";
+import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
 
 type TrustComplianceProps = {};
 
@@ -71,37 +72,45 @@ const TrustCompliance = ({}: TrustComplianceProps) => {
                 </div>
 
                 <div className={styles.head}>
-                    <Label title="Trust & Security" />
-                    <h2 className={cn("h2", styles.title)}>
-                        Built for healthcare.
-                        <br />
-                        Secured for healthcare.
-                    </h2>
-                    <div className={styles.subtitle}>
-                        HIPAA compliance isn&apos;t an add-on — it&apos;s
-                        foundational to everything we build. Your patients&apos;
-                        data is protected at every layer.
-                    </div>
+                    <FadeIn direction="up" delay={0} duration={0.6}>
+                        <Label title="Trust & Security" />
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.1} scale={0.95}>
+                        <h2 className={cn("h2", styles.title)}>
+                            Built for healthcare.
+                            <br />
+                            Secured for healthcare.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.2}>
+                        <div className={styles.subtitle}>
+                            HIPAA compliance isn&apos;t an add-on — it&apos;s
+                            foundational to everything we build. Your patients&apos;
+                            data is protected at every layer.
+                        </div>
+                    </FadeIn>
                 </div>
 
-                <div className={styles.grid}>
+                <StaggerChildren className={styles.grid} staggerDelay={0.12}>
                     {pillars.map((pillar) => (
-                        <div className={styles.card} key={pillar.id}>
-                            <div className={styles.cardIcon}>
-                                {pillar.icon(24)}
+                        <StaggerItem key={pillar.id} scale>
+                            <div className={styles.card}>
+                                <div className={styles.cardIcon}>
+                                    {pillar.icon(24)}
+                                </div>
+                                <h3 className={styles.cardTitle}>{pillar.title}</h3>
+                                <div className={styles.cardItems}>
+                                    {pillar.items.map((item, i) => (
+                                        <div className={styles.cardItem} key={i}>
+                                            <div className={styles.itemDot}></div>
+                                            <span>{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                            <h3 className={styles.cardTitle}>{pillar.title}</h3>
-                            <div className={styles.cardItems}>
-                                {pillar.items.map((item, i) => (
-                                    <div className={styles.cardItem} key={i}>
-                                        <div className={styles.itemDot}></div>
-                                        <span>{item}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerChildren>
             </div>
         </div>
     );

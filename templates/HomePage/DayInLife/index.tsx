@@ -15,6 +15,7 @@ import {
     MoneyRecive,
     Sun1,
 } from "iconsax-react";
+import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
 
 type DayInLifeProps = {};
 
@@ -181,130 +182,138 @@ const DayInLife = ({}: DayInLifeProps) => {
                 </div>
 
                 <div className={styles.head}>
-                    <Label title="Day in the Life" />
-                    <h2 className={cn("h2", styles.title)}>
-                        A day in the life —
-                        <br />
-                        your practice on Omnira.
-                    </h2>
-                    <div className={styles.subtitle}>
-                        See how a typical practice day transforms when 5 AI
-                        agents handle the operations, and your team focuses on
-                        patients.
-                    </div>
+                    <FadeIn direction="up" delay={0} duration={0.6}>
+                        <Label title="Day in the Life" />
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.1} scale={0.95}>
+                        <h2 className={cn("h2", styles.title)}>
+                            A day in the life of
+                            <br />
+                            your practice on Omnira.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.2}>
+                        <div className={styles.subtitle}>
+                            See how a typical practice day transforms when 5 AI
+                            agents handle the operations, and your team focuses on
+                            patients.
+                        </div>
+                    </FadeIn>
                 </div>
 
                 {/* Column Headers */}
-                <div className={styles.columnHeaders}>
-                    <div className={styles.colTime}></div>
-                    <div className={styles.colTraditional}>
-                        <div className={styles.colHeaderBadge}>
-                            <span className={styles.colDot + " " + styles.dotRed}></span>
-                            <span>Traditional Practice</span>
+                <FadeIn direction="up" delay={0.25}>
+                    <div className={styles.columnHeaders}>
+                        <div className={styles.colTime}></div>
+                        <div className={styles.colTraditional}>
+                            <div className={styles.colHeaderBadge}>
+                                <span className={styles.colDot + " " + styles.dotRed}></span>
+                                <span>Traditional Practice</span>
+                            </div>
+                        </div>
+                        <div className={styles.colOmnira}>
+                            <div className={styles.colHeaderBadge}>
+                                <span className={styles.colDot + " " + styles.dotGreen}></span>
+                                <span>Omnira-Powered Practice</span>
+                            </div>
                         </div>
                     </div>
-                    <div className={styles.colOmnira}>
-                        <div className={styles.colHeaderBadge}>
-                            <span className={styles.colDot + " " + styles.dotGreen}></span>
-                            <span>Omnira-Powered Practice</span>
-                        </div>
-                    </div>
-                </div>
+                </FadeIn>
 
                 {/* Timeline */}
-                <div className={styles.timeline}>
+                <StaggerChildren className={styles.timeline} staggerDelay={0.08}>
                     {timeline.map((entry, index) => (
-                        <div
-                            className={cn(styles.row, {
-                                [styles.rowFirst]: index === 0,
-                                [styles.rowLast]: index === timeline.length - 1,
-                            })}
-                            key={index}
-                        >
-                            {/* Time Column */}
-                            <div className={styles.timeCol}>
-                                <div className={styles.timeNode}>
-                                    <div className={styles.timeIcon}>
-                                        {entry.icon(20)}
+                        <StaggerItem key={index}>
+                            <div
+                                className={cn(styles.row, {
+                                    [styles.rowFirst]: index === 0,
+                                    [styles.rowLast]: index === timeline.length - 1,
+                                })}
+                            >
+                                {/* Time Column */}
+                                <div className={styles.timeCol}>
+                                    <div className={styles.timeNode}>
+                                        <div className={styles.timeIcon}>
+                                            {entry.icon(20)}
+                                        </div>
                                     </div>
+                                    <div className={styles.timeInfo}>
+                                        <div className={styles.timeValue}>
+                                            {entry.time}
+                                        </div>
+                                        <div className={styles.timePeriod}>
+                                            {entry.period}
+                                        </div>
+                                    </div>
+                                    {index < timeline.length - 1 && (
+                                        <div className={styles.connector}></div>
+                                    )}
                                 </div>
-                                <div className={styles.timeInfo}>
-                                    <div className={styles.timeValue}>
-                                        {entry.time}
-                                    </div>
-                                    <div className={styles.timePeriod}>
-                                        {entry.period}
-                                    </div>
-                                </div>
-                                {index < timeline.length - 1 && (
-                                    <div className={styles.connector}></div>
-                                )}
-                            </div>
 
-                            {/* Traditional Column */}
-                            <div className={cn(styles.entryCard, styles.entryTraditional)}>
-                                <h4 className={styles.entryHeadline}>
-                                    {entry.traditional.headline}
-                                </h4>
-                                <p className={styles.entryDetail}>
-                                    {entry.traditional.detail}
-                                </p>
-                                <div className={cn(styles.moodTag, styles[`mood_${entry.traditional.mood}`])}>
-                                    {entry.traditional.mood === "idle" ? "Systems idle" : 
-                                     entry.traditional.mood === "stressed" ? "Staff stressed" : "Neutral"}
+                                {/* Traditional Column */}
+                                <div className={cn(styles.entryCard, styles.entryTraditional)}>
+                                    <h4 className={styles.entryHeadline}>
+                                        {entry.traditional.headline}
+                                    </h4>
+                                    <p className={styles.entryDetail}>
+                                        {entry.traditional.detail}
+                                    </p>
+                                    <div className={cn(styles.moodTag, styles[`mood_${entry.traditional.mood}`])}>
+                                        {entry.traditional.mood === "idle" ? "Systems idle" : 
+                                         entry.traditional.mood === "stressed" ? "Staff stressed" : "Neutral"}
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Omnira Column */}
-                            <div className={cn(styles.entryCard, styles.entryOmnira)}>
-                                <h4 className={styles.entryHeadline}>
-                                    {entry.omnira.headline}
-                                </h4>
-                                <p className={styles.entryDetail}>
-                                    {entry.omnira.detail}
-                                </p>
-                                <div className={cn(styles.moodTag, styles.mood_active)}>
-                                    {entry.omnira.mood === "active" ? "Agents active" : "Ready"}
+                                {/* Omnira Column */}
+                                <div className={cn(styles.entryCard, styles.entryOmnira)}>
+                                    <h4 className={styles.entryHeadline}>
+                                        {entry.omnira.headline}
+                                    </h4>
+                                    <p className={styles.entryDetail}>
+                                        {entry.omnira.detail}
+                                    </p>
+                                    <div className={cn(styles.moodTag, styles.mood_active)}>
+                                        {entry.omnira.mood === "active" ? "Agents active" : "Ready"}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerChildren>
 
-                {/* Bottom Summary — same grid as timeline rows */}
-                <div className={styles.summaryRow}>
-                    {/* Time column — final node */}
-                    <div className={styles.summaryTimeCol}>
-                        <div className={styles.summaryConnector}></div>
-                        <div className={styles.summaryIcon}>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="12" cy="12" r="10" />
-                                <polyline points="12 6 12 12 16 14" />
-                            </svg>
+                {/* Bottom Summary */}
+                <FadeIn direction="up" delay={0.1}>
+                    <div className={styles.summaryRow}>
+                        <div className={styles.summaryTimeCol}>
+                            <div className={styles.summaryConnector}></div>
+                            <div className={styles.summaryIcon}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                            </div>
+                            <div className={styles.summaryTimeLabel}>24h Summary</div>
                         </div>
-                        <div className={styles.summaryTimeLabel}>24h Summary</div>
-                    </div>
 
-                    {/* Traditional summary */}
-                    <div className={cn(styles.summaryCard, styles.summaryTraditional)}>
-                        <div className={styles.summaryDot + " " + styles.dotRed}></div>
-                        <div className={styles.summaryContent}>
-                            <div className={styles.summaryLabel}>Traditional Practice</div>
-                            <div className={styles.summaryValue}>10+ hours of admin work</div>
-                            <div className={styles.summaryNote}>Staff burned out. Claims delayed. Revenue leaking.</div>
+                        <div className={cn(styles.summaryCard, styles.summaryTraditional)}>
+                            <div className={styles.summaryDot + " " + styles.dotRed}></div>
+                            <div className={styles.summaryContent}>
+                                <div className={styles.summaryLabel}>Traditional Practice</div>
+                                <div className={styles.summaryValue}>10+ hours of admin work</div>
+                                <div className={styles.summaryNote}>Staff burned out. Claims delayed. Revenue leaking.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Omnira summary */}
-                    <div className={cn(styles.summaryCard, styles.summaryOmnira)}>
-                        <div className={styles.summaryDot + " " + styles.dotGreen}></div>
-                        <div className={styles.summaryContent}>
-                            <div className={styles.summaryLabel}>Omnira-Powered Practice</div>
-                            <div className={styles.summaryValue}>90% automated operations</div>
-                            <div className={styles.summaryNote}>Staff focused on patients. Agents handle the rest — 24/7.</div>
+                        <div className={cn(styles.summaryCard, styles.summaryOmnira)}>
+                            <div className={styles.summaryDot + " " + styles.dotGreen}></div>
+                            <div className={styles.summaryContent}>
+                                <div className={styles.summaryLabel}>Omnira-Powered Practice</div>
+                                <div className={styles.summaryValue}>90% automated operations</div>
+                                <div className={styles.summaryNote}>Staff focused on patients. Agents handle the rest — 24/7.</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </FadeIn>
             </div>
         </div>
     );

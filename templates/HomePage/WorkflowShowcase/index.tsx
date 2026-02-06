@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import cn from "classnames";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./WorkflowShowcase.module.sass";
 import Label from "@/components/Label";
 import {
@@ -12,6 +13,7 @@ import {
     Moon,
     UserAdd,
 } from "iconsax-react";
+import { FadeIn } from "@/components/Animations";
 
 type WorkflowShowcaseProps = {};
 
@@ -205,130 +207,169 @@ const WorkflowShowcase = ({}: WorkflowShowcaseProps) => {
                 </div>
 
                 <div className={styles.head}>
-                    <Label title="Workflow Showcase" />
-                    <h2 className={cn("h2", styles.title)}>
-                        See it in action —
-                        <br />
-                        before and after.
-                    </h2>
-                    <div className={styles.subtitle}>
-                        Real workflows. Real time saved. See how Omnira
-                        transforms the daily operations your team struggles
-                        with.
-                    </div>
+                    <FadeIn direction="up" delay={0} duration={0.6}>
+                        <Label title="Workflow Showcase" />
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.1} scale={0.95}>
+                        <h2 className={cn("h2", styles.title)}>
+                            See it in action —
+                            <br />
+                            before and after.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.2}>
+                        <div className={styles.subtitle}>
+                            Real workflows. Real time saved. See how Omnira
+                            transforms the daily operations your team struggles
+                            with.
+                        </div>
+                    </FadeIn>
                 </div>
 
                 {/* Workflow Tabs */}
-                <div className={styles.tabs}>
-                    {workflows.map((wf, index) => (
-                        <button
-                            className={cn(styles.tab, {
-                                [styles.tabActive]: index === activeIndex,
-                            })}
-                            key={wf.id}
-                            onClick={() => setActiveIndex(index)}
-                        >
-                            <span className={styles.tabIcon}>
-                                {wf.icon(18)}
-                            </span>
-                            <span className={styles.tabName}>{wf.title}</span>
-                        </button>
-                    ))}
-                </div>
+                <FadeIn direction="up" delay={0.3}>
+                    <div className={styles.tabs}>
+                        {workflows.map((wf, index) => (
+                            <button
+                                className={cn(styles.tab, {
+                                    [styles.tabActive]: index === activeIndex,
+                                })}
+                                key={wf.id}
+                                onClick={() => setActiveIndex(index)}
+                            >
+                                <span className={styles.tabIcon}>
+                                    {wf.icon(18)}
+                                </span>
+                                <span className={styles.tabName}>{wf.title}</span>
+                            </button>
+                        ))}
+                    </div>
+                </FadeIn>
 
                 {/* Before / After Comparison */}
-                <div className={styles.comparison}>
-                    {/* WITHOUT */}
-                    <div className={cn(styles.card, styles.cardBefore)}>
-                        <div className={styles.cardHeader}>
-                            <div className={styles.cardDot + " " + styles.dotRed}></div>
-                            <span className={styles.cardLabel}>
-                                {active.without.title}
-                            </span>
-                        </div>
-                        <div className={styles.steps}>
-                            {active.without.steps.map((step, i) => (
-                                <div className={styles.step} key={i}>
-                                    <div className={styles.stepNumber}>
-                                        {i + 1}
-                                    </div>
-                                    <span>{step}</span>
+                <FadeIn direction="up" delay={0.4}>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            className={styles.comparison}
+                            key={active.id}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                        >
+                            {/* WITHOUT */}
+                            <div className={cn(styles.card, styles.cardBefore)}>
+                                <div className={styles.cardHeader}>
+                                    <div className={styles.cardDot + " " + styles.dotRed}></div>
+                                    <span className={styles.cardLabel}>
+                                        {active.without.title}
+                                    </span>
                                 </div>
-                            ))}
-                        </div>
-                        <div className={styles.cardFooter}>
-                            <div className={styles.metric}>
-                                <span className={styles.metricLabel}>Time</span>
-                                <span className={styles.metricValue}>
-                                    {active.without.time}
-                                </span>
-                            </div>
-                            <div className={styles.metric}>
-                                <span className={styles.metricLabel}>Result</span>
-                                <span className={styles.metricValue}>
-                                    {active.without.result}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* VS Divider */}
-                    <div className={styles.vsBlock}>
-                        <span>vs</span>
-                    </div>
-
-                    {/* WITH */}
-                    <div className={cn(styles.card, styles.cardAfter)}>
-                        <div className={styles.cardHeader}>
-                            <div className={styles.cardDot + " " + styles.dotGreen}></div>
-                            <span className={styles.cardLabel}>
-                                {active.with.title}
-                            </span>
-                        </div>
-                        <div className={styles.steps}>
-                            {active.with.steps.map((step, i) => (
-                                <div className={styles.step} key={i}>
-                                    <div
-                                        className={
-                                            styles.stepNumber +
-                                            " " +
-                                            styles.stepNumberGreen
-                                        }
-                                    >
-                                        {i + 1}
-                                    </div>
-                                    <span>{step}</span>
+                                <div className={styles.steps}>
+                                    {active.without.steps.map((step, i) => (
+                                        <motion.div
+                                            className={styles.step}
+                                            key={i}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{
+                                                duration: 0.3,
+                                                delay: i * 0.06,
+                                                ease: [0.25, 0.1, 0.25, 1],
+                                            }}
+                                        >
+                                            <div className={styles.stepNumber}>
+                                                {i + 1}
+                                            </div>
+                                            <span>{step}</span>
+                                        </motion.div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                        <div className={styles.cardFooter}>
-                            <div className={styles.metric}>
-                                <span className={styles.metricLabel}>Time</span>
-                                <span
-                                    className={
-                                        styles.metricValue +
-                                        " " +
-                                        styles.metricGreen
-                                    }
-                                >
-                                    {active.with.time}
-                                </span>
+                                <div className={styles.cardFooter}>
+                                    <div className={styles.metric}>
+                                        <span className={styles.metricLabel}>Time</span>
+                                        <span className={styles.metricValue}>
+                                            {active.without.time}
+                                        </span>
+                                    </div>
+                                    <div className={styles.metric}>
+                                        <span className={styles.metricLabel}>Result</span>
+                                        <span className={styles.metricValue}>
+                                            {active.without.result}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div className={styles.metric}>
-                                <span className={styles.metricLabel}>Result</span>
-                                <span
-                                    className={
-                                        styles.metricValue +
-                                        " " +
-                                        styles.metricGreen
-                                    }
-                                >
-                                    {active.with.result}
-                                </span>
+
+                            {/* VS Divider */}
+                            <div className={styles.vsBlock}>
+                                <span>vs</span>
                             </div>
-                        </div>
-                    </div>
-                </div>
+
+                            {/* WITH */}
+                            <div className={cn(styles.card, styles.cardAfter)}>
+                                <div className={styles.cardHeader}>
+                                    <div className={styles.cardDot + " " + styles.dotGreen}></div>
+                                    <span className={styles.cardLabel}>
+                                        {active.with.title}
+                                    </span>
+                                </div>
+                                <div className={styles.steps}>
+                                    {active.with.steps.map((step, i) => (
+                                        <motion.div
+                                            className={styles.step}
+                                            key={i}
+                                            initial={{ opacity: 0, x: 10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{
+                                                duration: 0.3,
+                                                delay: i * 0.06,
+                                                ease: [0.25, 0.1, 0.25, 1],
+                                            }}
+                                        >
+                                            <div
+                                                className={
+                                                    styles.stepNumber +
+                                                    " " +
+                                                    styles.stepNumberGreen
+                                                }
+                                            >
+                                                {i + 1}
+                                            </div>
+                                            <span>{step}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                                <div className={styles.cardFooter}>
+                                    <div className={styles.metric}>
+                                        <span className={styles.metricLabel}>Time</span>
+                                        <span
+                                            className={
+                                                styles.metricValue +
+                                                " " +
+                                                styles.metricGreen
+                                            }
+                                        >
+                                            {active.with.time}
+                                        </span>
+                                    </div>
+                                    <div className={styles.metric}>
+                                        <span className={styles.metricLabel}>Result</span>
+                                        <span
+                                            className={
+                                                styles.metricValue +
+                                                " " +
+                                                styles.metricGreen
+                                            }
+                                        >
+                                            {active.with.result}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
+                </FadeIn>
             </div>
         </div>
     );

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import cn from "classnames";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Agents.module.sass";
 import {
     Calendar,
@@ -10,6 +11,7 @@ import {
     Health,
     Chart,
 } from "iconsax-react";
+import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
 
 type AgentsProps = {};
 
@@ -117,73 +119,102 @@ const Agents = ({}: AgentsProps) => {
                 </div>
 
                 <div className={styles.head}>
-                    <div className={styles.label}>
-                        <span>The 5 AI Agents</span>
-                    </div>
-                    <h2 className={cn("h2", styles.title)}>
-                        5 agents. One platform.
-                        <br />
-                        Your practice on autopilot.
-                    </h2>
-                    <div className={styles.subtitle}>
-                        Each agent is a specialist — operating autonomously
-                        across a critical area of your practice, 24 hours a day,
-                        7 days a week.
-                    </div>
+                    <FadeIn direction="up" delay={0} duration={0.6}>
+                        <div className={styles.label}>
+                            <span>The 5 AI Agents</span>
+                        </div>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.1} scale={0.95}>
+                        <h2 className={cn("h2", styles.title)}>
+                            5 agents. One platform.
+                            <br />
+                            Your practice on autopilot.
+                        </h2>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={0.2}>
+                        <div className={styles.subtitle}>
+                            Each agent is a specialist — operating autonomously
+                            across a critical area of your practice, 24 hours a day,
+                            7 days a week.
+                        </div>
+                    </FadeIn>
                 </div>
 
                 {/* Agent Tabs */}
-                <div className={styles.tabs}>
-                    {agents.map((agent, index) => (
-                        <button
-                            className={cn(styles.tab, {
-                                [styles.tabActive]: index === activeIndex,
-                            })}
-                            key={agent.id}
-                            onClick={() => setActiveIndex(index)}
-                        >
-                            <span className={styles.tabIcon}>{AgentIcons[agent.id](18)}</span>
-                            <span className={styles.tabName}>{agent.name}</span>
-                        </button>
-                    ))}
-                </div>
+                <FadeIn direction="up" delay={0.3}>
+                    <div className={styles.tabs}>
+                        {agents.map((agent, index) => (
+                            <button
+                                className={cn(styles.tab, {
+                                    [styles.tabActive]: index === activeIndex,
+                                })}
+                                key={agent.id}
+                                onClick={() => setActiveIndex(index)}
+                            >
+                                <span className={styles.tabIcon}>{AgentIcons[agent.id](18)}</span>
+                                <span className={styles.tabName}>{agent.name}</span>
+                            </button>
+                        ))}
+                    </div>
+                </FadeIn>
 
                 {/* Active Agent Detail */}
-                <div className={styles.detail}>
-                    <div className={styles.detailInner}>
-                        <div className={styles.detailLeft}>
-                            <div className={styles.detailIcon}>
-                                {AgentIcons[active.id](32)}
-                            </div>
-                            <h3 className={styles.detailName}>{active.name}</h3>
-                            <p className={styles.detailTagline}>
-                                {active.tagline}
-                            </p>
-                            <p className={styles.detailOwns}>{active.owns}</p>
-                            <div className={styles.detailImpact}>
-                                <div className={styles.impactValue}>
-                                    {active.impact}
-                                </div>
-                                <div className={styles.impactLabel}>
-                                    {active.impactRevenue}
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.detailRight}>
-                            <div className={styles.capabilitiesLabel}>
-                                Key Capabilities
-                            </div>
-                            <div className={styles.capabilities}>
-                                {active.capabilities.map((cap, i) => (
-                                    <div className={styles.capability} key={i}>
-                                        <div className={styles.capDot}></div>
-                                        <span>{cap}</span>
+                <FadeIn direction="up" delay={0.4}>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            className={styles.detail}
+                            key={active.id}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                        >
+                            <div className={styles.detailInner}>
+                                <div className={styles.detailLeft}>
+                                    <div className={styles.detailIcon}>
+                                        {AgentIcons[active.id](32)}
                                     </div>
-                                ))}
+                                    <h3 className={styles.detailName}>{active.name}</h3>
+                                    <p className={styles.detailTagline}>
+                                        {active.tagline}
+                                    </p>
+                                    <p className={styles.detailOwns}>{active.owns}</p>
+                                    <div className={styles.detailImpact}>
+                                        <div className={styles.impactValue}>
+                                            {active.impact}
+                                        </div>
+                                        <div className={styles.impactLabel}>
+                                            {active.impactRevenue}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.detailRight}>
+                                    <div className={styles.capabilitiesLabel}>
+                                        Key Capabilities
+                                    </div>
+                                    <div className={styles.capabilities}>
+                                        {active.capabilities.map((cap, i) => (
+                                            <motion.div
+                                                className={styles.capability}
+                                                key={cap}
+                                                initial={{ opacity: 0, x: 15 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{
+                                                    duration: 0.35,
+                                                    delay: i * 0.06,
+                                                    ease: [0.25, 0.1, 0.25, 1],
+                                                }}
+                                            >
+                                                <div className={styles.capDot}></div>
+                                                <span>{cap}</span>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        </motion.div>
+                    </AnimatePresence>
+                </FadeIn>
             </div>
         </div>
     );
