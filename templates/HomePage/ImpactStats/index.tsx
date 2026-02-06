@@ -100,8 +100,7 @@ const ImpactStats = ({}: ImpactStatsProps) => {
                     </FadeIn>
                     <FadeIn direction="up" delay={0.2}>
                         <div className={styles.subtitle}>
-                            Real, measurable impact across every area of your
-                            practice — from day one.
+                            Real, measurable impact across every area of your practice — from day one.
                         </div>
                     </FadeIn>
                 </div>

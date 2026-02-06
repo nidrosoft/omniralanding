@@ -19,6 +19,8 @@
     display: flex
     align-items: center
     height: 120px
+    +t
+        height: 88px
     +m
         height: 76px
 
@@ -40,11 +42,10 @@
             width: 153px
 
 .button
-    +m
+    white-space: nowrap
+    +t
         height: 44px
         padding: 0 20px
-    +s
-        display: none
 
 // =====================
 // Navigation
@@ -56,8 +57,6 @@
     align-items: center
     gap: 8px
     +t
-        gap: 4px
-    +m
         position: fixed
         top: 0
         left: 0
@@ -76,7 +75,7 @@
         z-index: 2
 
 .navOpen
-    +m
+    +t
         opacity: 1
         visibility: visible
         pointer-events: auto
@@ -91,11 +90,9 @@
     color: $text-secondary
     opacity: .55
     text-decoration: none
+    white-space: nowrap
     transition: all .25s
     +t
-        padding: 8px 12px
-        font-size: 13px
-    +m
         padding: 12px 32px
         font-size: 18px
         opacity: .7
@@ -116,7 +113,7 @@
     background: none
     border: none
     cursor: pointer
-    +m
+    +t
         display: flex
         flex-direction: column
         justify-content: center

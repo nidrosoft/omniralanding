@@ -212,9 +212,7 @@ const WorkflowShowcase = ({}: WorkflowShowcaseProps) => {
                     </FadeIn>
                     <FadeIn direction="up" delay={0.1} scale={0.95}>
                         <h2 className={cn("h2", styles.title)}>
-                            See it in action —
-                            <br />
-                            before and after.
+                            See it in action — before and after.
                         </h2>
                     </FadeIn>
                     <FadeIn direction="up" delay={0.2}>
