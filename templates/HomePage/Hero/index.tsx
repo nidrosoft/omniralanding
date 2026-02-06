@@ -1,7 +1,17 @@
+"use client";
+
 import cn from "classnames";
 import styles from "./Hero.module.sass";
 
 type HeroProps = {};
+
+const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(targetId);
+    if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+};
 
 const Hero = ({}: HeroProps) => (
     <div className={cn("section", styles.hero)}>
@@ -21,14 +31,22 @@ const Hero = ({}: HeroProps) => (
                     so your team focuses on patient care, not paperwork.
                 </div>
                 <div className={styles.buttons}>
-                    <a className={cn(styles.button, styles.ctaButton)} href="#waitlist">
+                    <a
+                        className={cn(styles.button, styles.ctaButton)}
+                        href="#waitlist"
+                        onClick={(e) => smoothScroll(e, "waitlist")}
+                    >
                         <svg className={styles.ctaIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="22" y1="2" x2="11" y2="13" />
                             <polygon points="22 2 15 22 11 13 2 9 22 2" />
                         </svg>
                         <span>Join the Waitlist</span>
                     </a>
-                    <a className={cn(styles.button, styles.ctaButtonSecondary)} href="#demo">
+                    <a
+                        className={cn(styles.button, styles.ctaButtonSecondary)}
+                        href="#demo"
+                        onClick={(e) => smoothScroll(e, "demo")}
+                    >
                         <svg className={styles.ctaIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <circle cx="12" cy="12" r="10" />
                             <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none" />

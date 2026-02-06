@@ -11,11 +11,22 @@ type ButtonProps = {
 const Button = ({ className, title, href, ...props }: ButtonProps) => {
     const CreatedTag = href ? "a" : "button";
 
+    const handleClick = (e: React.MouseEvent) => {
+        if (href && href.startsWith("#")) {
+            e.preventDefault();
+            const targetId = href.replace("#", "");
+            const el = document.getElementById(targetId);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+    };
+
     return (
         <CreatedTag
             className={cn(className, styles.button)}
             href={href}
-            // target={href ? "_blank" : undefined}
+            onClick={handleClick}
             rel={href ? "noopener noreferrer" : undefined}
             {...props}
         >
